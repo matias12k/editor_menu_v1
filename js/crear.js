@@ -64,12 +64,19 @@ let isCreated = false;
 
 document.addEventListener('DOMContentLoaded', function() {
 
-    var MenuSeleccionado = document.getElementById('MenuSeleccionado');
-    var seleccionado__cerrar = document.getElementById('seleccionado__cerrar');
-    
-    seleccionado__cerrar.addEventListener('click', function(){
-        MenuSeleccionado.style.display = 'none';
-    })
+
+    document.getElementById('checkboxNegrita').addEventListener('change', function() {
+        let isChecked = this.checked;
+
+        // Obtener todos los elementos con la clase 'menu_anchor'
+        let textos = document.getElementsByClassName('menu_anchor');
+
+        // Iterar sobre todos los elementos con la clase 'menu_anchor' y cambiar su font-weight
+        Array.from(textos).forEach(texto => {
+            texto.style.fontWeight = isChecked ? 'bold' : 'normal';
+        });
+    });
+
     
 
 
@@ -99,9 +106,9 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Agregar un evento al botón 'cerrarTexto' para ocultar el menú de modificar texto cuando se haga clic
-    cerrarTexto.addEventListener('click', function() {
-        divModificarTexto.style.display = 'none';
-    });
+    // cerrarTexto.addEventListener('click', function() {
+    //     divModificarTexto.style.display = 'none';
+    // });
 
     // Agregar un evento al botón 'modificarTexto' para mostrar el menú de modificar texto y ocultar el menú de modificar botón cuando se haga clic
     modificarTexto.addEventListener('click', function() {
@@ -1377,6 +1384,16 @@ function CambiarFuente(){
     selectFuentes.dispatchEvent(new Event('change'));
 
 
+}
+
+function PonerNegrita() {
+    // Obtener todos los elementos con la clase 'menu_anchor'
+    let textos = document.getElementsByClassName('menu_anchor');
+
+    // Iterar sobre todos los elementos con la clase 'menu_anchor' y cambiar su font-weight a 'bold'
+    Array.from(textos).forEach(texto => {
+        texto.style.fontWeight = 'bold';
+    });
 }
 
 //FUNCIONES DE "MENU BOTON"

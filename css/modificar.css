@@ -1,0 +1,685 @@
+/*
+Sitio Web Creado por ITred Spa.
+Direccion: Guido Reni #4190
+Pedro Agui Cerda - Santiago - Chile
+contacto@itred.cl o itred.spa@gmail.com
+https://www.itred.cl
+Creado, Programado y Diseñado por ITred Spa.
+BPPJ
+*/
+
+/* ---------------------------------------------------------------------------------------------------------------------
+   ------------------- INICIO ITred Spa crear.css ----------------------------------------------------------------------
+   --------------------------------------------------------------------------------------------------------------------- */
+
+   
+/*VARIABLES DE COLORES*/
+:root{
+ --menu-bg-color:rgb(0, 0, 255);  
+ --menu-hover-color1:rgb(255, 0, 0);
+ --menu-hover-color2:rgb(255, 192, 203);
+}
+
+
+
+.container {
+   display: flex;  /* Utiliza el modelo de diseño flexbox para organizar los elementos hijos de manera flexible dentro del contenedor */
+   height: 100%;  /* Establece que la altura del contenedor sea el 100% de la altura del contenedor padre */
+   width: 100%;  /* Establece que el ancho del contenedor sea el 100% del ancho del contenedor padre */
+}
+    
+
+.container__div1, .container__div2 {
+   flex-basis: 50%;
+   margin: 0 10px;  /* Establece un margen de 0 a los lados y 10px arriba y abajo */
+}
+
+.container__div2 {
+   display: flex;  /* Hace que los elementos dentro de div2 se distribuyan en línea */
+   flex-direction: column;  /* Establece que los elementos dentro de div2 se distribuyan en columnas */
+}
+
+.formulario__select,
+.formulario__data {
+   margin-top: 20px;  /* Agrega un margen superior de 20 píxeles a los elementos con las clases .formulario__select y .formulario__data */
+   margin-bottom: 20px;  /* Agrega un margen inferior de 20 píxeles a los elementos con las clases .formulario__select y .formulario__data */
+}
+
+.prevista {
+   height: 100%;  /* Establece que la altura del elemento sea el 100% de la altura del contenedor padre */
+   width: 100%;  /* Establece que el ancho del elemento sea el 100% del ancho del contenedor padre */
+   background: blue;  /* Establece el color de fondo del elemento a azul */
+}
+
+.addColumn-cont {
+   margin: 5%;  /* Agrega un margen de 5% del tamaño del contenedor padre alrededor del elemento */
+}
+
+
+.menu_example {
+   display: flex;  /* Hace que los elementos dentro del contenedor se distribuyan en línea */
+   flex-direction: row;  /* Establece que los elementos dentro del contenedor se distribuyan en filas */
+}
+
+.btn-example {
+   background: blue;  /* Establece el color de fondo del botón */
+   padding: 20px;  /* Establece un relleno interno de 20px */
+   color: white;  /* Establece el color del texto */
+}
+
+.contenet-center {
+   display: flex;  /* Hace que los elementos dentro del contenedor se distribuyan en línea */
+   justify-content: center;  /* Centra los elementos horizontalmente dentro del contenedor */
+}
+
+.contenet-center p {
+   margin-bottom: 20px;  /* Establece un margen en la parte inferior del párrafo */
+}
+
+.primer_hr {
+   border: none;  /* Elimina el borde del hr */
+   border-top: 1px solid #000000;  /* Establece un borde superior de 1px sólido */
+   margin: 20px 0;  /* Establece un margen de 20px arriba y abajo */
+   width: 100%;  /* Establece que el hr ocupe el 100% del ancho disponible */
+}
+
+/* Contenedor inputs para nombres de columnas */
+.input_names-container{
+   display: flex;                  /* Agrega un estilo flexible */
+   flex-direction: column;         /* Direccióin columna */
+   grid-column: 1 / 3;             /* Define en qué columnas del grid se posiciona el contenedor*/
+   position: relative;             /* Establece el método de posicionamiento del contenedor*/
+   gap: 10px;                      /* Establece el espacio entre los elementos hijos del contenedor*/
+}
+
+.input_names-column{
+   display: grid;                  /*Definimos la visualización de los elementos hijos como un grid*/
+   grid-template-columns: repeat(4, 1fr);/*Definimos el tamañom de las columnas */
+   row-gap: 10px;                  /*Establecemos el espacio entre las filas del grid*/    
+}
+
+.input_names-column p{              /**/
+   grid-column: 1 / 3;             /*Definimos en que columnas del grid posicionamos los elementos <p>*/
+}
+
+.botonNombre {
+   grid-row: 2/4;  /* Define el rango de filas que ocupará el elemento dentro de un grid */
+}
+
+.input_names-column input {          
+   grid-column: 3 / 6;  /* Define el rango de columnas que ocupará el elemento dentro de un grid */
+}
+
+.input_names-column hr {
+   grid-column: 1 / 6;  /* Define el rango de columnas que ocupará el elemento dentro de un grid */
+}
+
+.input_names-row-container {
+   padding: 10px;  /* Establece un relleno interno de 10px */
+   position: relative;  /* Establece que el elemento tenga una posición relativa */
+   display: grid;  /* Establece que el elemento sea un contenedor grid */
+   flex-direction: column;  /* Establece la dirección principal de los elementos en columnas */
+   justify-content: flex-end;  /* Alinea los elementos hacia el final del contenedor en el eje vertical */
+   gap: 10px;  /* Define el espacio entre los elementos hijos */
+}
+
+.detele-button {
+   grid-column: 4/6;  /* Define el rango de columnas que ocupará el elemento dentro de un grid */
+   grid-row: 2 / 2;  /* Define el rango de filas que ocupará el elemento dentro de un grid */
+   background: none;  /* Establece que el fondo del botón sea transparente */
+   border: none;  /* Elimina el borde del botón */
+   padding: 0;  /* Elimina el relleno interno del botón */
+   cursor: pointer;  /* Establece el cursor del ratón como un puntero */
+}
+
+.detele-button img {
+   width: 30px;  /* Establece el ancho de la imagen dentro del botón */
+   height: 30px;  /* Establece la altura de la imagen dentro del botón */
+}
+
+.cont-sub {
+   width: 100%;  /* Establece que el elemento ocupe el 100% del ancho disponible */
+   grid-column: 1 / 6;  /* Define el rango de columnas que ocupará el elemento dentro de un grid */
+   grid-row: 5 / 5;  /* Define el rango de filas que ocupará el elemento dentro de un grid */
+}
+
+.cont-add-subcolumn {
+   width: 50%;  /* Establece que el elemento ocupe el 50% del ancho disponible */
+   display: flex;  /* Hace que los elementos dentro del contenedor se distribuyan en línea */
+   flex-direction: column;  /* Establece que los elementos dentro del contenedor se distribuyan en columnas */
+}
+
+.cont-add-sub {
+   position: relative;  /* Establece que el elemento tenga una posición relativa */
+   display: flex;  /* Hace que los elementos dentro del contenedor se distribuyan en línea */
+   justify-content: flex-end;  /* Alinea los elementos hacia el final del contenedor en el eje horizontal */
+   margin-top: 20px;  /* Establece un margen en la parte superior del contenedor */
+}
+
+.cont-add-sub input {
+   width: 32px;  /* Establece que el input ocupe el 10% del ancho disponible */
+}
+
+.input_names-row-container {
+   padding: 10px;  /* Establece un relleno interno de 10px */
+   position: relative;  /* Establece que el elemento tenga una posición relativa */
+   display: grid;  /* Establece que el elemento sea un contenedor grid */
+   flex-direction: column;  /* Establece la dirección principal de los elementos en columnas */
+   justify-content: flex-end;  /* Alinea los elementos hacia el final del contenedor en el eje vertical */
+   gap: 10px;  /* Define el espacio entre los elementos hijos */
+}
+
+.menu_preview.fullscreen {
+   position: absolute;  /* Establece que el elemento tenga una posición absoluta respecto a su contenedor padre */
+   width: 100%;  /* El ancho del elemento ocupará el 100% del ancho del contenedor padre */
+   height: 1000%;  /* La altura del elemento será 1000% de la altura del contenedor padre, es decir, 10 veces la altura del contenedor padre */
+   left: 0;  /* El borde izquierdo del elemento se alinea con el borde izquierdo del contenedor padre */
+   top: 0;  /* El borde superior del elemento se alinea con el borde superior del contenedor padre */
+   background-color: rgb(65, 65, 65);  /* Establece el color de fondo del elemento a un gris oscuro */
+   border: none;  /* Elimina cualquier borde que el elemento pudiera tener */
+   max-width: 100%;  /* El ancho máximo del elemento será el 100% del ancho del contenedor padre, previniendo que se expanda más allá de este */
+   padding: 0;  /* Elimina cualquier relleno interior del elemento */
+   overflow: inherit;  /* Hereda la propiedad overflow del contenedor padre, que determina cómo manejar el contenido que desborda el elemento */
+   margin-top: 0;  /* Elimina cualquier margen superior del elemento */
+}
+
+
+
+
+/* Navegador (Menu) principal, se encuentra en la previsualización  */
+.menu_preview.fullscreen nav{
+   width: 100%;                /* Ancho del navegador */
+}
+
+/* Lista principal del navegador, subElemento del navegador */
+/* Se selecciona solo la lista 'ul' HIJA de .menu_preview, con '>' no se selecciona sub-elementos */
+.menu_preview.fullscreen > nav > ul{
+   display: flex;              /* Agrega un estilo flexible */
+   justify-content: center;    /* Centra el contenido */
+}
+
+.titulo-menu {
+   margin-top: 2%;  /* Agrega un margen superior del 2% de la altura del contenedor padre */
+   margin-bottom: 2%;  /* Agrega un margen inferior del 2% de la altura del contenedor padre */
+}
+
+.menu_preview {
+   grid-column: 3 / 5;  /* Hace que el elemento ocupe desde la columna 3 hasta la columna 5 en un contenedor de cuadrícula (grid container) */
+   border: solid 1px;  /* Establece un borde sólido de 1 píxel alrededor del elemento */
+   padding: 2%;  /* Agrega un relleno del 2% del ancho del contenedor padre dentro del borde del elemento */
+   max-width: 700px;  /* Establece el ancho máximo del elemento en 700 píxeles, previniendo que se expanda más allá de este valor */
+   min-height: 50%;  /* Establece una altura mínima del 50% de la altura del contenedor padre */
+   margin-top: 30px;  /* Agrega un margen superior de 30 píxeles */
+}
+
+
+.Menu {
+   width: 100%;  /* Establece que el ancho del elemento sea el 100% del ancho del contenedor padre */
+}
+
+.ul-columnas {
+   display: flex;  /* Utiliza el modelo de diseño flexbox para organizar los elementos hijos en una fila o columna flexible */
+   flex-wrap: nowrap;  /* Evita que los elementos hijos se envuelvan a una nueva línea, manteniéndolos en una única fila o columna */
+}
+
+.menu_column {
+   flex: 1 1 auto;  /* Permite que los elementos se expandan y contraigan según sea necesario, tomando el mismo espacio disponible */
+   min-width: 0;  /* Permite que los elementos hijos se reduzcan más allá de su tamaño mínimo de contenido */
+   white-space: nowrap;  /* Evita que el texto dentro de los elementos se rompa en varias líneas */
+   font-size: clamp(10px, 1.5vw, 16px);  /* Establece el tamaño de fuente adaptativo, con un valor mínimo de 10px, un valor máximo de 16px y ajustándose proporcionalmente a 1.5% del ancho de la ventana gráfica */
+}
+
+.menu_anchor {
+   display: block;  /* Define que el elemento es un bloque, ocupando toda la anchura disponible y permitiendo margenes y padding */
+   color: white;  /* Establece el color del texto a blanco */
+   text-decoration: none;  /* Elimina cualquier decoración de texto, como subrayado, del enlace */
+   text-align: center;  /* Centra el texto horizontalmente dentro del elemento */
+   padding: 10px;  /* Agrega un relleno interno de 10 píxeles alrededor del contenido del elemento */
+   background-color: var(--menu-bg-color);  /* Establece el color de fondo del elemento a azul */
+   font-family: Arial;
+}
+
+
+
+.ul-sub {
+   list-style: none;  /* Elimina los estilos de lista predeterminados (viñetas, números) del elemento de lista */
+   padding: 0;  /* Elimina cualquier relleno interno del elemento */
+   margin: 0;  /* Elimina cualquier margen externo del elemento */
+   display: none;  /* Oculta el submenú por defecto */
+}
+
+/* Mostrar submenús al pasar el ratón */
+.menu_column:hover .ul-sub {
+   display: block;  /* Muestra el submenú cuando el usuario pasa el ratón sobre el elemento con la clase .menu_column */
+}
+
+.menu_column:hover {
+   background-color: var(--menu-hover-color1);  /* Cambia el color de fondo de .menu_column a rojo cuando el usuario pasa el ratón sobre él */
+}
+
+.menu_column:hover a {
+   background-color:var(--menu-hover-color1);;  /* Cambia el color de fondo de los enlaces dentro de .menu_column a rojo cuando el usuario pasa el ratón sobre .menu_column */
+}
+
+.menu_column a:hover {
+   background-color: var(--menu-hover-color2);  /* Cambia el color de fondo de los enlaces dentro de .menu_column a un tono más claro de rojo cuando el usuario pasa el ratón sobre el enlace */
+}
+
+
+.Volverbtn {
+   padding: 10px;  /* Agrega un relleno interno de 10 píxeles alrededor del contenido del botón */
+   border-radius: 16px;  /* Redondea los bordes del botón con un radio de 16 píxeles */
+   border: solid 1px;  /* Establece un borde sólido de 1 píxel alrededor del botón */
+   margin: 10px;  /* Agrega un margen externo de 10 píxeles alrededor del botón */
+   cursor: pointer;  /* Cambia el cursor a un puntero (mano) cuando el usuario pasa el ratón sobre el botón */
+   animation: scaleAnimation 2s infinite;  /* Aplica una animación llamada 'scaleAnimation' que dura 2 segundos y se repite indefinidamente */
+}
+
+.input-num_columns {
+   width: 32px;  /* Establece un ancho fijo de 32 píxeles para el input */
+}
+
+.container-select {
+   position: relative;  /* Posiciona el contenedor de manera relativa para poder posicionar elementos hijos de manera absoluta dentro de él */
+   display: flex;  /* Utiliza el modelo de diseño flexbox para organizar los elementos hijos en una fila flexible */
+   justify-content: center;  /* Centra los elementos hijos horizontalmente */
+   flex-direction: row;  /* Organiza los elementos hijos en una fila (horizontalmente) */
+   margin-top: 7%;  /* Agrega un margen superior del 7% de la altura del contenedor padre */
+   margin-bottom: 7%;  /* Agrega un margen inferior del 7% de la altura del contenedor padre */
+}
+
+.texto {
+   position: absolute;  /* Posiciona el elemento de manera absoluta respecto a su contenedor padre */
+   top: -25px;  /* Desplaza el elemento 25 píxeles hacia arriba desde la parte superior del contenedor padre */
+}
+
+#btnAgregarColumna {
+   width: 150px;  /* Establece un ancho fijo de 150 píxeles para el botón */
+}
+
+.input_columns-container {
+   display: flex;  /* Utiliza el modelo de diseño flexbox para organizar los elementos hijos en una fila flexible */
+   flex-direction: row;  /* Organiza los elementos hijos en una fila (horizontalmente) */
+   justify-content: center;  /* Centra los elementos hijos horizontalmente */
+}
+
+
+.container-nombre {
+   display: flex;  /* Utiliza el modelo de diseño flexbox para organizar los elementos hijos en una fila flexible */
+   flex-direction: row;  /* Organiza los elementos hijos en una fila (horizontalmente) */
+   justify-content: center;  /* Centra los elementos hijos horizontalmente dentro del contenedor */
+   margin-top: 4%;  /* Agrega un margen superior del 4% de la altura del contenedor padre */
+   margin-bottom: 7%;  /* Agrega un margen inferior del 7% de la altura del contenedor padre */
+}
+
+.container-btn {
+   display: flex;  /* Utiliza el modelo de diseño flexbox para organizar los elementos hijos en una fila flexible */
+   flex-direction: row;  /* Organiza los elementos hijos en una fila (horizontalmente) */
+   justify-content: center;  /* Centra los elementos hijos horizontalmente dentro del contenedor */
+   padding: 20px;  /* Agrega un relleno interno de 20 píxeles alrededor del contenido del contenedor */
+   margin-top: 20px;  /* Agrega un margen superior de 20 píxeles */
+}
+
+.container-btn button {
+   margin: 0 5px;  /* Agrega un margen de 5 píxeles a la izquierda y a la derecha de cada botón, creando espacio entre los botones */
+}
+
+.nombre-menu {
+   margin-left: 10px;  /* Agrega un margen a la izquierda de 10 píxeles */
+}
+
+
+.estilos{
+   display: flex;       /* Establece el contenedor como un contenedor flex */
+   flex-direction: column;  /* Organiza los elementos hijos en una columna */
+}
+
+.estilos__titulo{
+   display: flex;                  /* Establece el elemento como un contenedor flex */
+   order: 0;                      /* Define el orden del elemento en el contenedor flex, aquí es el primer elemento */
+   justify-content: center;       /* Centra el contenido horizontalmente dentro del contenedor */
+   margin-bottom: 20px;           /* Agrega un margen inferior de 20 píxeles */
+   font-size: 25px;               /* Establece el tamaño de la fuente a 25 píxeles */
+   text-decoration-line: underline; /* Subraya el texto */
+}
+
+.estilos__contenedor1{
+   display: flex;                  /* Establece el elemento como un contenedor flex */
+   flex-direction: row;            /* Organiza los elementos hijos en una fila */
+}
+
+.fuentes__titulo, 
+.letras__titulo, 
+.color-letras__titulo, 
+.color__titulo{
+   display: flex;                  /* Establece los elementos como contenedores flex */
+   font-size: 20px;                /* Establece el tamaño de la fuente a 20 píxeles */
+   margin-bottom: 14px;            /* Agrega un margen inferior de 14 píxeles */
+   justify-content: center;        /* Centra el contenido horizontalmente dentro del contenedor */
+}
+
+
+.fuentes__select{
+   display: flex;                  /* Establece el elemento como un contenedor flex */
+   justify-content: center;        /* Centra el contenido horizontalmente dentro del contenedor */
+}
+
+.letras__inputs{
+   display: flex;                  /* Establece el elemento como un contenedor flex */
+   justify-content: center;        /* Centra el contenido horizontalmente dentro del contenedor */
+   flex-direction: column;         /* Organiza los elementos hijos en una columna */
+}
+
+.inputs__xd{
+   display: flex;                  /* Establece el elemento como un contenedor flex */
+   justify-content: center;        /* Centra el contenido horizontalmente dentro del contenedor */
+   margin-bottom: 10px;            /* Agrega un margen inferior de 10 píxeles */
+}
+
+.input__estilo{
+   margin-right: 12px;             /* Agrega un margen derecho de 12 píxeles */
+}
+
+.estilos__contenedor2{
+   display: flex;                  /* Establece el elemento como un contenedor flex */
+   flex-direction: row;            /* Organiza los elementos hijos en una fila */
+}
+
+
+.color__contenedor{
+   display: flex;                  /* Establece el elemento como un contenedor flex */
+   flex-direction: column;         /* Organiza los elementos hijos en una columna */
+}
+
+.color__inputs{
+   display: flex;                  /* Establece el elemento como un contenedor flex */
+   justify-content: center;        /* Centra el contenido horizontalmente dentro del contenedor */
+   margin-bottom: 12px;            /* Agrega un margen inferior de 12 píxeles */
+}
+
+.input__hover,
+.input-letras__label{
+   margin-right: 10px;             /* Agrega un margen derecho de 10 píxeles a los elementos con clases `input__hover` y `input-letras__label` */
+}
+
+.color-letras__contenedor{
+   display: flex;                  /* Establece el elemento como un contenedor flex */
+   flex-direction: column;         /* Organiza los elementos hijos en una columna */
+}
+
+.contenedor__input-letras{
+   display: flex;                  /* Establece el elemento como un contenedor flex */
+   justify-content: center;        /* Centra el contenido horizontalmente dentro del contenedor */
+   margin-bottom: 12px;            /* Agrega un margen inferior de 12 píxeles */
+}
+
+
+.contenedor__color-letras,
+.contenedor__letras,
+.contenedor__color,
+.contenedor__fuentes{
+   flex-basis: 50%;    /* Establece la base flexible de los elementos, ocupando el 50% del espacio del contenedor principal */
+}
+
+.container-btn-sytle{
+   display: flex;
+   margin-top: 20px;
+   justify-content: center;
+   display: none;
+}
+
+.btn-syle__btn{
+   margin-left: 10px;
+}
+
+.btn-modifcar-boton{
+   z-index: 99999;
+   position: absolute;
+   bottom: 2px;
+   padding: 10px;
+   border: 1px solid;
+   border-radius: 15px;
+   width: 750px;
+   height: 30%;
+   background-color: white;
+   display: none;
+}
+
+.btn-modifcar-texto{
+   z-index: 99999;
+   position: absolute;
+   bottom: 2px;
+   padding: 10px;
+   border: 1px solid;
+   border-radius: 15px;
+   width: 750px;
+   height: 30%;
+   background-color: white;
+   display: none;
+}
+
+.container-btn-modificar {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-between;
+   margin: 30px 20px 0px 20px;
+}
+
+.container-btn-modificar_texto{
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-between;
+   margin: 30px 1px 0px 1px;
+}
+
+.btn__style{
+   border: 1px solid;
+   width: 110px;
+   height: 70px;
+   border-radius: 15px;
+   margin-bottom: 10px;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   text-align: center; /* Para asegurar que el texto esté centrado */
+}
+
+.btn__style_texto{
+   border: 1px solid;
+    width: 98px;
+    height: 70px;
+    border-radius: 15px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.first-part, .second-part {
+   display: block; /* Asegurar que cada parte esté en una línea separada */
+}
+
+.container-title{
+   display: flex;
+   justify-content: space-between;
+   align-items: center; /* Para alinear verticalmente los elementos */
+}
+
+.title__menu {
+   display: flex;
+   justify-content: center;
+   flex: 1; /* Permitir que el elemento ocupe todo el espacio disponible */
+   text-align: center; /* Asegura que el texto esté centrado dentro del div */
+}
+
+.cerrar__menu,
+.cerrar_menu_texto{
+   padding: 10px;
+   border: solid 1px;
+   border-radius: 50%; /* Cambia esto a 50% para un círculo perfecto */
+   width: 8px; /* Ancho fijo para mantener el círculo */
+   height: 8px; /* Alto fijo para mantener el círculo */
+   display: flex;
+   justify-content: center; /* Centra el contenido horizontalmente */
+   align-items: center; /* Centra el contenido verticalmente */
+   text-align: center; /* Asegura que el texto esté centrado */
+}
+
+.cerrar__menu:hover,
+.cerrar_menu_texto:hover,
+.seleccionado__cerrar:hover{
+   background-color: red;
+   cursor: pointer;
+}
+
+.btn__style:hover,
+.btn__style_texto:hover {
+   background-color: green;
+   cursor: pointer;
+}
+
+.modificar__tipoletra{
+   width: 300px;
+   height: 30px;
+   margin-left: 20px;
+   font-size: 20px;
+   text-align: center;
+}
+
+.modificar__tamanoletra{
+   width: 100px;
+   height: 30px;
+   font-size: 20px;
+   text-align: center;
+}
+
+.title__menu{
+   font-size: 25px;
+   margin-bottom: 20px;
+}
+
+.seleccionado{
+   background-color: white;
+   position: absolute;
+   top: 40px;
+   height: 83%;
+   width: 50%;
+   border: 1px solid;
+   border-radius: 11px;
+}
+
+.Seleccionado__titulo{
+   font-size: 19px;
+   text-align: center;
+}
+
+.seleccionado__container-title{
+   display: flex;
+   justify-content: space-between;
+   align-items: center; /* Para alinear verticalmente los elementos */   
+}
+
+.seleccionado_titulo{
+   display: flex;
+   justify-content: center;
+   flex: 1; /* Permitir que el elemento ocupe todo el espacio disponible */
+   text-align: center; /* Asegura que el texto esté centrado dentro del div */
+   font-size: 19px;
+}
+
+.seleccionado__cerrar{
+   padding: 9px;
+   border: solid 1px;
+   border-radius: 50%;
+   width: 3px;
+   height: 3px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   text-align: center;
+   margin-right: 5px;
+   margin-top: 5px;
+}
+
+.MenuSeleccionado{
+   display: none;
+}
+
+.seleccionado__contenedor{
+   display: flex;
+   flex-direction: column;
+   margin: 30px;
+}
+
+.contenedor__color {
+   display: flex;
+   flex-direction: row;
+}
+
+
+.estilos__contenedor1{
+   display: flex;                  /* Establece el elemento como un contenedor flex */
+   flex-direction: row;            /* Organiza los elementos hijos en una fila */
+}
+
+
+.fuentes__titulo, 
+.letras__titulo, 
+.color-letras__titulo, 
+.color__titulo{
+   display: flex;                  /* Establece los elementos como contenedores flex */
+   font-size: 20px;                /* Establece el tamaño de la fuente a 20 píxeles */
+   margin-bottom: 14px;            /* Agrega un margen inferior de 14 píxeles */
+   justify-content: center;        /* Centra el contenido horizontalmente dentro del contenedor */
+}
+
+.fuentes__select{
+   display: flex;                  /* Establece el elemento como un contenedor flex */
+   justify-content: center;        /* Centra el contenido horizontalmente dentro del contenedor */
+}
+
+
+.inputs__xd{
+   display: flex;                  /* Establece el elemento como un contenedor flex */
+   justify-content: center;        /* Centra el contenido horizontalmente dentro del contenedor */
+   margin-bottom: 10px;            /* Agrega un margen inferior de 10 píxeles */
+}
+
+.input__estilo{
+   margin-right: 12px;             /* Agrega un margen derecho de 12 píxeles */
+}
+
+.estilos__contenedor2{
+   display: flex;                  /* Establece el elemento como un contenedor flex */
+   flex-direction: row;            /* Organiza los elementos hijos en una fila */
+}
+
+/* Define la animación de escalado */
+@keyframes scaleAnimation {
+   0%, 100% {
+     transform: scale(1);  /* Escala normal al inicio y al final de la animación */
+   }
+   50% {
+     transform: scale(1.1);  /* Escala al 110% del tamaño original en la mitad de la animación */
+   }
+}
+
+
+
+
+/* ---------------------------------------------------------------------------------------------------------------------
+  -------------------------------------- FIN ITred Spa crear.css ------------------------------------------------------
+  --------------------------------------------------------------------------------------------------------------------- */
+
+/*
+Sitio Web Creado por ITred Spa.
+Direccion: Guido Reni #4190
+Pedro Agui Cerda - Santiago - Chile
+contacto@itred.cl o itred.spa@gmail.com
+https://www.itred.cl
+Creado, Programado y Diseñado por ITred Spa.
+BPPJ
+*/

@@ -252,18 +252,16 @@ input[type=number]::-webkit-inner-spin-button {
 }
 
 .estilos{
-    display: none;  /* Oculta el contenedor de estilos por defecto */
-    flex-direction: column;  
-    position: fixed;  /* Mantiene el menú flotante */
-    top: 50%;         /* Centra el menú verticalmente */
-    left: 50%;        /* Centra el menú horizontalmente */
-    transform: translate(-50%, -50%); /* Ajusta la posición exacta al centro */
-    z-index: 1000;    /* Asegura que el menú esté sobre otros elementos */
-    background-color: white; /* Fondo para mejorar la visibilidad */
-    padding: 10px;    /* Espaciado interno */
-    border-radius: 5px; /* Bordes redondeados */
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Sombra para profundidad */
-    padding-bottom: 50px; /* Asegura espacio suficiente en la parte inferior para el botón */
+    z-index: 99999;
+    position: absolute;
+    bottom: 2px;
+    padding: 10px;
+    border: 1px solid;
+    border-radius: 15px;
+    width: 750px;
+    height: 30%;
+    background-color: white;
+    display: none;
 }
  
 .estilos__titulo{
@@ -276,6 +274,7 @@ input[type=number]::-webkit-inner-spin-button {
     
 }
  
+.contenedor__tamanio,
 .estilos__contenedor1{
     display: flex;                  /* Establece el elemento como un contenedor flex */
     flex-direction: row;            /* Organiza los elementos hijos en una fila */
@@ -291,7 +290,7 @@ input[type=number]::-webkit-inner-spin-button {
     justify-content: center;        /* Centra el contenido horizontalmente dentro del contenedor */
 }
  
- 
+ .tamanio__select,
 .fuentes__select{
     display: flex;                  /* Establece el elemento como un contenedor flex */
     justify-content: center;        /* Centra el contenido horizontalmente dentro del contenedor */
@@ -523,6 +522,8 @@ input[type=number]::-webkit-inner-spin-button {
     text-align: center;  /* Centra el texto dentro del elemento */
     padding: 10px;  /* Espacio interno de 10 píxeles alrededor del contenido del elemento */
     background-color: blue;  /* Color de fondo azul para los elementos */
+    box-sizing: border-box; /* Incluye padding y border en el tamaño total */
+    overflow: hidden; /* Oculta el texto que excede el tamaño del elemento */
 }
 
 .ul-sub {

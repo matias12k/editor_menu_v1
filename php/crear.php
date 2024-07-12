@@ -117,7 +117,8 @@ BPPJ
                     <div id="btn-height" class="btn__style">Alto Bóton</div>
                     <div id="btn-borde-style" class="btn__style">Estilo Borde Bóton</div>
                     <div id="btn-border-color" class="btn__style">Color Borde Bóton</div>
-                    <div class="btn__style"></div>    
+                    <div id="btn-separador-boton" class="btn__style">Separar Botones</div>
+                     
                 </div>
                 <div id="MenuSeleccionado" class="MenuSeleccionado">
                     <div class="seleccionado">
@@ -146,7 +147,23 @@ BPPJ
                                 <option selected>Seleccionar</option>
                             </select>
                         </div>
+
+                        <div class="contenedor__tamanio">
+                            <div class="tamanio__titulo">Tamaño de Letra</div>
+                            <div class="tamanio__select">
+                                
+                                <select id="selectTamanio">
+                                    <option value="12">10 </option>
+                                    <option value="14">11 </option>
+                                    <option value="16" selected>12 </option>
+                                    <option value="18">13</option>
+                                    <option value="20">14</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
+
+                    
 
                     <div class="contenedor__letras">
                         <div for="" class="letras__titulo">Estilos Letras</div>

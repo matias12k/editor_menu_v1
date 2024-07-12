@@ -64,6 +64,8 @@ let isCreated = false;
 
 document.addEventListener('DOMContentLoaded', function() {
 
+    CambiarTamanioTexto();
+
 
     document.getElementById('checkboxNegrita').addEventListener('change', function() {
         let isChecked = this.checked;
@@ -90,9 +92,8 @@ document.addEventListener('DOMContentLoaded', function() {
     let cerrarmodificar = document.getElementById('cerrar_menu'); // Botón para cerrar el menú de modificar botón
     let modificarBtn = document.getElementById('modificarBtn'); // Botón que abre el menú de modificar botón
 
-    let divModificarTexto = document.getElementById('btn-modificar-texto'); // Elemento del texto modificar
-    let cerrarTexto = document.getElementById('cerrar_menu_texto'); // Botón para cerrar el menú de modificar texto
-    let modificarTexto = document.getElementById('modificarTexto'); // Botón que abre el menú de modificar texto
+    
+    
 
     // Agregar un evento al botón 'cerrarmodificar' para ocultar el menú de modificar botón cuando se haga clic
     cerrarmodificar.addEventListener('click', function() {
@@ -110,11 +111,7 @@ document.addEventListener('DOMContentLoaded', function() {
     //     divModificarTexto.style.display = 'none';
     // });
 
-    // Agregar un evento al botón 'modificarTexto' para mostrar el menú de modificar texto y ocultar el menú de modificar botón cuando se haga clic
-    modificarTexto.addEventListener('click', function() {
-        divModificarTexto.style.display = 'block';
-        divModificarBoton.style.display = 'none';
-    });
+    
 });
 
 
@@ -1366,7 +1363,7 @@ function preguntarRedireccionamiento() {
 }
 
 function CambiarFuente(){
-
+    
     // Agregar un event listener al <select> para escuchar cambios
     selectFuentes.addEventListener('change', function() {
         // Obtener el valor de la opción seleccionada en lugar de textContent
@@ -1380,11 +1377,28 @@ function CambiarFuente(){
             texto.style.fontFamily = content;
         });
     });
-
     selectFuentes.dispatchEvent(new Event('change'));
-
-
 }
+
+function CambiarTamanioTexto() {
+    let selectTamanio = document.getElementById('selectTamanio');
+    let textos = document.getElementsByClassName('menu_anchor');
+
+    selectTamanio.addEventListener('change', function() {
+        let nuevoTamanio = this.value + 'px';
+
+        Array.from(textos).forEach(texto => {
+            texto.style.fontSize = nuevoTamanio;
+        });
+    });
+
+    // Inicializar el tamaño de texto
+    let valorInicial = selectTamanio.value + 'px';
+    Array.from(textos).forEach(texto => {
+        texto.style.fontSize = valorInicial;
+    });
+}
+
 
 function PonerNegrita() {
     // Obtener todos los elementos con la clase 'menu_anchor'

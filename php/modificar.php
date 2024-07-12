@@ -278,6 +278,19 @@ BPPJ
                                 <option select>Seleccionar</option>
                             </select>
                         </div>
+                        <div class="contenedor__tamanio">
+                            <div class="tamanio__titulo">Tamaño de Letra</div>
+                            <div class="tamanio__select">
+                                
+                                <select id="selectTamanio">
+                                    <option value="12">10 </option>
+                                    <option value="14">11 </option>
+                                    <option value="16" selected>12 </option>
+                                    <option value="18">13</option>
+                                    <option value="20">14</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="contenedor__letras">

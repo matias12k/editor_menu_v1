@@ -37,9 +37,9 @@ document.addEventListener("DOMContentLoaded", function () {
         MenuSeleccionado.style.display = 'none';
     })
     
-    // Hacer que los elementos con los IDs 'btn-modificar-boton' y 'btn-modificar-texto' sean arrastrables
+    // Hacer que los elementos con los IDs 'btn-modificar-boton' y 'estilos' sean arrastrables
     makeElementDraggable('estilos');
-    makeElementDraggable('btn-modificar-texto');
+    makeElementDraggable('btn-modificar-boton');
 
     // Obtener referencias a los elementos del DOM necesarios
     let divModificarBoton = document.getElementById('btn-modificar-boton'); // Elemento del botón modificar

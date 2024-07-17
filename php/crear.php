@@ -136,7 +136,7 @@ BPPJ
             </div>
 
             <div id="estilos" class="estilos">
-                <div class="estilos__titulo">Estilos Generales</div>
+                <div class="estilos__titulo"></div>
                     
                 <div class="estilos__contenedor1">
                     <div class="contenedor__fuentes">
@@ -154,10 +154,10 @@ BPPJ
                                 
                                 <select id="selectTamanio">
                                     <option value="12">10 </option>
-                                    <option value="14">11 </option>
-                                    <option value="16" selected>12 </option>
-                                    <option value="18">13</option>
-                                    <option value="20">14</option>
+                                    <option value="13">11 </option>
+                                    <option value="14" selected>12 </option>
+                                    <option value="15">13</option>
+                                    <option value="166">14</option>
                                 </select>
                             </div>
                         </div>

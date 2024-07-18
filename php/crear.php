@@ -182,6 +182,21 @@ BPPJ
                                 <label for="" class="input__estilo">Subrayar:</label>
                                 <input type="checkbox">                                
                             </div>
+                            
+                        </div>
+                        <div class="container-btn-modificar_texto">
+                            
+                            <!-- <div class="btn__style_texto">Color</div>
+                            <div class="btn__style_texto">Posición Fila</div>
+                            <div class="btn__style_texto">Posicion columna</div>
+                            <div class="btn__style_texto">Viñeta</div>
+                            <div class="btn__style_texto">Alineación izquierda</div>
+                            <div class="btn__style_texto">Alineación centro</div>
+                            <div class="btn__style_texto">Alineación derecha</div>
+                            <div class="btn__style_texto">Justificado</div>
+                            <div class="btn__style_texto">Animación</div>
+                            <div class="btn__style_texto">Tiempo Animación</div>
+                            <div class="btn__style_texto">Borrar todo el formato</div> -->
                         </div>
                     </div>
                     <button id="cerrarMenu">Cerrar</button>    

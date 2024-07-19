@@ -153,11 +153,11 @@ BPPJ
                             <div class="tamanio__select">
                                 
                                 <select id="selectTamanio">
-                                    <option value="12">10 </option>
-                                    <option value="13">11 </option>
-                                    <option value="14" selected>12 </option>
-                                    <option value="15">13</option>
-                                    <option value="166">14</option>
+                                    <option value="12">12 </option>
+                                    <option value="13">13 </option>
+                                    <option value="14" selected>14 </option>
+                                    <option value="15">15</option>
+                                    <option value="16">16</option>
                                 </select>
                             </div>
                         </div>

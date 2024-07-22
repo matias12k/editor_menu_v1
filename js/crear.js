@@ -1412,6 +1412,7 @@ function PonerNegrita() {
     });
 }
 
+
 function SepararContenedores(margen) {
     let textos = document.getElementsByClassName('menu_anchor');
     Array.from(textos).forEach(texto => {

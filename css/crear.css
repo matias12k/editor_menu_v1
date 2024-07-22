@@ -524,20 +524,14 @@ input[type=number]::-webkit-inner-spin-button {
 }
 
 .menu_anchor {
-    display: block;
-    color: white;
-    text-decoration: none;
-    text-align: center;
-    padding: 10px;
-    background-color: blue;
-    box-sizing: content-box;
-    overflow: hidden;
-    white-space: nowrap;  /* Evita que el texto se divida en varias líneas */
-    text-overflow: ellipsis;  /* Muestra puntos suspensivos si el texto es demasiado largo */
-    width: 150px;
-    height: 50px;
-    border: 1px solid white;
-    font-size: 16px;
+    display: block;  /* Hace que los elementos con clase .menu_anchor sean elementos de bloque */
+    color: white;  /* Color del texto en blanco */
+    text-decoration: none;  /* Elimina el subrayado del texto */
+    text-align: center;  /* Centra el texto dentro del elemento */
+    padding: 10px;  /* Espacio interno de 10 píxeles alrededor del contenido del elemento */
+    background-color: blue;  /* Color de fondo azul para los elementos */
+    box-sizing: border-box; /* Incluye padding y border en el tamaño total */
+    overflow: hidden; /* Oculta el texto que excede el tamaño del elemento */
 }
 
 .ul-sub {

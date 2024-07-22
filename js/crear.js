@@ -1362,6 +1362,8 @@ function preguntarRedireccionamiento() {
     });
 }
 
+//Funciones del modificar texto
+
 function CambiarFuente(){
     
     // Agregar un event listener al <select> para escuchar cambios
@@ -1409,6 +1411,17 @@ function PonerNegrita() {
         texto.style.fontWeight = 'bold';
     });
 }
+
+function SepararContenedores(margen) {
+    let textos = document.getElementsByClassName('menu_anchor');
+    Array.from(textos).forEach(texto => {
+        texto.style.marginBottom = margen + 'px';
+    });
+}
+
+
+//Fin Funciones del modificar texto
+
 
 //FUNCIONES DE "MENU BOTON"
 function bgcolor() {

@@ -1413,14 +1413,52 @@ function PonerNegrita() {
 }
 
 
-function SepararContenedores(margen) {
-    let textos = document.getElementsByClassName('menu_anchor');
-    Array.from(textos).forEach(texto => {
-        texto.style.marginBottom = margen + 'px';
-    });
-}
+// function showMenu(action) {
+//     const menu = document.getElementById('MenuSeleccionado');
+//     const closeBtn = document.getElementById('seleccionado__cerrar');
+    
+//     // Limpiar contenido anterior
+//     menu.querySelector('.seleccionado__contenedor').innerHTML = '';
+    
+//     // Mostrar menú flotante
+//     menu.style.display = 'block';
 
+//     // Configurar la acción a realizar
+//     if (action === 'SepararContenedores') {
+//         SepararContenedores();
+//     }
 
+//     // Evento para cerrar el menú
+//     closeBtn.addEventListener('click', () => {
+//         menu.style.display = 'none';
+//     });
+// }
+
+// function SepararContenedores() {
+//     const tituloSeleccionado = document.querySelector('.seleccionado_titulo');
+//     let seleccionado__contenedor = document.querySelector('.seleccionado__contenedor');
+
+//     let divNombre = document.createElement('div');
+//     divNombre.textContent = 'Separar Contenedores:';
+
+//     let inputMargin = document.createElement('input');
+//     inputMargin.type = 'number';
+//     inputMargin.min = 0;
+//     inputMargin.value = 10;
+
+//     seleccionado__contenedor.appendChild(divNombre);
+//     seleccionado__contenedor.appendChild(inputMargin);
+
+//     inputMargin.addEventListener('input', (event) => {
+//         let selectedMargin = event.target.value;
+//         let textos = document.getElementsByClassName('menu_anchor');
+//         Array.from(textos).forEach(texto => {
+//             texto.style.marginBottom = selectedMargin + 'px';
+//         });
+//     });
+
+//     tituloSeleccionado.textContent = 'Margen Inferior Contenedores';
+// }
 //Fin Funciones del modificar texto
 
 

@@ -161,6 +161,23 @@ BPPJ
                                 </select>
                             </div>
                         </div>
+                        <div class="container-btn-modificar_texto">
+                            <div class="btn__style_texto" onclick="showMenu('SepararContenedores')">Separador de botones</div>
+                            
+                        </div>
+                        <div id="MenuSeleccionado" class="MenuSeleccionado">
+                    <div class="seleccionado">
+                        <div class="seleccionado__container-title">
+                            <div class="seleccionado_titulo">titulo</div>
+                            <div id="seleccionado__cerrar" class="seleccionado__cerrar">X</div> 
+                        </div>
+                        <div id="seleccionado__contenido" class="seleccionado__contenido">
+                            <div class="seleccionado__contenedor">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
                     </div>
 
                     
@@ -184,20 +201,7 @@ BPPJ
                             </div>
                             
                         </div>
-                        <div class="container-btn-modificar_texto">
-                            
-                            <!-- <div class="btn__style_texto">Color</div>
-                            <div class="btn__style_texto">Posición Fila</div>
-                            <div class="btn__style_texto">Posicion columna</div>
-                            <div class="btn__style_texto">Viñeta</div>
-                            <div class="btn__style_texto">Alineación izquierda</div>
-                            <div class="btn__style_texto">Alineación centro</div>
-                            <div class="btn__style_texto">Alineación derecha</div>
-                            <div class="btn__style_texto">Justificado</div>
-                            <div class="btn__style_texto">Animación</div>
-                            <div class="btn__style_texto">Tiempo Animación</div>
-                            <div class="btn__style_texto">Borrar todo el formato</div> -->
-                        </div>
+                       
                     </div>
                     <button id="cerrarMenu">Cerrar</button>    
                 </div>

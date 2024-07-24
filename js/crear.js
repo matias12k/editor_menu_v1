@@ -1413,52 +1413,76 @@ function PonerNegrita() {
 }
 
 
-// function showMenu(action) {
-//     const menu = document.getElementById('MenuSeleccionado');
-//     const closeBtn = document.getElementById('seleccionado__cerrar');
+function showMenu(action) {
+    const menu = document.getElementById('MenuSeparar');
+    const closeBtn = document.getElementById('seleccionado_separar__cerrar');
     
-//     // Limpiar contenido anterior
-//     menu.querySelector('.seleccionado__contenedor').innerHTML = '';
+    // Limpiar contenido anterior
+    const contenedor = menu.querySelector('.seleccionado__contenedor');
+    contenedor.innerHTML = '';
     
-//     // Mostrar menú flotante
-//     menu.style.display = 'block';
+    // Mostrar menú flotante
+    menu.style.display = 'block';
 
-//     // Configurar la acción a realizar
-//     if (action === 'SepararContenedores') {
-//         SepararContenedores();
-//     }
+    // Configurar la acción a realizar
+    if (action === 'SepararContenedores') {
+        SepararContenedores(contenedor);
+    }
 
-//     // Evento para cerrar el menú
-//     closeBtn.addEventListener('click', () => {
-//         menu.style.display = 'none';
-//     });
-// }
+    // Evento para cerrar el menú
+    closeBtn.addEventListener('click', () => {
+        menu.style.display = 'none';
+    });
+}
 
-// function SepararContenedores() {
-//     const tituloSeleccionado = document.querySelector('.seleccionado_titulo');
-//     let seleccionado__contenedor = document.querySelector('.seleccionado__contenedor');
+function SepararContenedores(contenedor) {
+    const tituloSeleccionado = document.querySelector('.seleccionado_titulo');
+    let seleccionado__contenedor = contenedor;
 
-//     let divNombre = document.createElement('div');
-//     divNombre.textContent = 'Separar Contenedores:';
+    let divNombre = document.createElement('div');
+    divNombre.textContent = 'Seleccionar botón:';
 
-//     let inputMargin = document.createElement('input');
-//     inputMargin.type = 'number';
-//     inputMargin.min = 0;
-//     inputMargin.value = 10;
+    let selectBotones = document.createElement('select');
+    let botones = document.querySelectorAll('.menu_anchor');
+    botones.forEach((boton, index) => {
+        let option = document.createElement('option');
+        option.value = index;
+        option.textContent = boton.textContent;
+        selectBotones.appendChild(option);
+    });
 
-//     seleccionado__contenedor.appendChild(divNombre);
-//     seleccionado__contenedor.appendChild(inputMargin);
+    let inputMarginContainer = document.createElement('div');
+    inputMarginContainer.style.display = 'none';
 
-//     inputMargin.addEventListener('input', (event) => {
-//         let selectedMargin = event.target.value;
-//         let textos = document.getElementsByClassName('menu_anchor');
-//         Array.from(textos).forEach(texto => {
-//             texto.style.marginBottom = selectedMargin + 'px';
-//         });
-//     });
+    let divMargin = document.createElement('div');
+    divMargin.textContent = 'Margen Lateral:';
 
-//     tituloSeleccionado.textContent = 'Margen Inferior Contenedores';
-// }
+    let inputMargin = document.createElement('input');
+    inputMargin.type = 'number';
+    inputMargin.min = 0;
+    inputMargin.value = 10;
+
+    inputMarginContainer.appendChild(divMargin);
+    inputMarginContainer.appendChild(inputMargin);
+
+    seleccionado__contenedor.appendChild(divNombre);
+    seleccionado__contenedor.appendChild(selectBotones);
+    seleccionado__contenedor.appendChild(inputMarginContainer);
+
+    selectBotones.addEventListener('change', () => {
+        inputMarginContainer.style.display = 'block';
+    });
+
+    inputMargin.addEventListener('input', (event) => {
+        let selectedMargin = event.target.value;
+        let selectedIndex = selectBotones.value;
+        let boton = botones[selectedIndex];
+        boton.style.marginLeft = selectedMargin + 'px';
+        boton.style.marginRight = selectedMargin + 'px';
+    });
+
+    tituloSeleccionado.textContent = 'Margen Lateral Botón Seleccionado';
+}
 //Fin Funciones del modificar texto
 
 

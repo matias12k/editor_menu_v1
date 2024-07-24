@@ -165,20 +165,24 @@ BPPJ
                             <div class="btn__style_texto" onclick="showMenu('SepararContenedores')">Separador de botones</div>
                             
                         </div>
-                        <div id="MenuSeleccionado" class="MenuSeleccionado">
-                    <div class="seleccionado">
-                        <div class="seleccionado__container-title">
-                            <div class="seleccionado_titulo">titulo</div>
-                            <div id="seleccionado__cerrar" class="seleccionado__cerrar">X</div> 
-                        </div>
-                        <div id="seleccionado__contenido" class="seleccionado__contenido">
-                            <div class="seleccionado__contenedor">
 
+
+                        <div id="MenuSeparar" class="MenuSeleccionado">
+                            <div class="seleccionado">
+                                <div class="seleccionado__container-title">
+                                    <div class="seleccionado_titulo">Titulo</div>
+                                    <div id="seleccionado_separar__cerrar" class="seleccionado__cerrar">X</div> 
+                                </div>
+                                <div id="seleccionado_separar__contenido" class="seleccionado__contenido">
+                                    <div class="seleccionado__contenedor"></div>
+                                </div>
                             </div>
                         </div>
+
+                        
+                    
                     </div>
-                </div>
-                    </div>
+                    
 
                     
 

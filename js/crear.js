@@ -25,7 +25,9 @@ let Fuentes = [
     {"id" : 3 , "nombre" : "monospace"},
     {"id" : 4 , "nombre" : "cursive"},
     {"id" : 5 , "nombre" : "fantasy"},
-    {"id" : 6 , "nombre" : "system-ui"}
+    {"id" : 6 , "nombre" : "system-ui"},
+    {"id" : 7 , "nombre" : "times-new-roman"}
+
 ];
 
 
@@ -64,6 +66,8 @@ let isCreated = false;
 
 document.addEventListener('DOMContentLoaded', function() {
 
+    
+    CambiarOrientacion();
     CambiarTamanioTexto();
 
 
@@ -1439,6 +1443,10 @@ function SepararContenedores(contenedor) {
     const tituloSeleccionado = document.querySelector('.seleccionado_titulo');
     let seleccionado__contenedor = contenedor;
 
+    // Limpiar el contenedor
+    seleccionado__contenedor.innerHTML = '';
+
+    // Crear y agregar los elementos para la selección del botón
     let divNombre = document.createElement('div');
     divNombre.textContent = 'Seleccionar botón:';
 
@@ -1451,40 +1459,113 @@ function SepararContenedores(contenedor) {
         selectBotones.appendChild(option);
     });
 
+    // Crear y agregar los campos para los márgenes
     let inputMarginContainer = document.createElement('div');
     inputMarginContainer.style.display = 'none';
 
-    let divMargin = document.createElement('div');
-    divMargin.textContent = 'Margen Lateral:';
+    let divMarginLeft = document.createElement('div');
+    divMarginLeft.textContent = 'Margen Izquierda:';
+    
+    let inputMarginLeft = document.createElement('input');
+    inputMarginLeft.type = 'number';
+    inputMarginLeft.min = 0;
+    inputMarginLeft.value = 10;
+    inputMarginLeft.placeholder = 'Izquierda';
 
-    let inputMargin = document.createElement('input');
-    inputMargin.type = 'number';
-    inputMargin.min = 0;
-    inputMargin.value = 10;
+    let divMarginRight = document.createElement('div');
+    divMarginRight.textContent = 'Margen Derecha:';
+    
+    let inputMarginRight = document.createElement('input');
+    inputMarginRight.type = 'number';
+    inputMarginRight.min = 0;
+    inputMarginRight.value = 10;
+    inputMarginRight.placeholder = 'Derecha';
 
-    inputMarginContainer.appendChild(divMargin);
-    inputMarginContainer.appendChild(inputMargin);
+    let divMarginTop = document.createElement('div');
+    divMarginTop.textContent = 'Margen Arriba:';
+    
+    let inputMarginTop = document.createElement('input');
+    inputMarginTop.type = 'number';
+    inputMarginTop.min = 0;
+    inputMarginTop.value = 10;
+    inputMarginTop.placeholder = 'Arriba';
+    
+    let divMarginBottom = document.createElement('div');
+    divMarginBottom.textContent = 'Margen Abajo:';
+    
+    let inputMarginBottom = document.createElement('input');
+    inputMarginBottom.type = 'number';
+    inputMarginBottom.min = 0;
+    inputMarginBottom.value = 10;
+    inputMarginBottom.placeholder = 'Abajo';
+
+    let divApplyButton = document.createElement('div');
+    divApplyButton.style.marginTop = '10px';
+    
+    let applyButton = document.createElement('button');
+    applyButton.textContent = 'Aplicar Cambios';
+
+    // Añadir todos los elementos al contenedor
+    inputMarginContainer.appendChild(divMarginLeft);
+    inputMarginContainer.appendChild(inputMarginLeft);
+    inputMarginContainer.appendChild(divMarginRight);
+    inputMarginContainer.appendChild(inputMarginRight);
+    inputMarginContainer.appendChild(divMarginTop);
+    inputMarginContainer.appendChild(inputMarginTop);
+    inputMarginContainer.appendChild(divMarginBottom);
+    inputMarginContainer.appendChild(inputMarginBottom);
+    divApplyButton.appendChild(applyButton);
 
     seleccionado__contenedor.appendChild(divNombre);
     seleccionado__contenedor.appendChild(selectBotones);
     seleccionado__contenedor.appendChild(inputMarginContainer);
+    seleccionado__contenedor.appendChild(divApplyButton);
 
+    // Mostrar el contenedor de márgenes cuando se selecciona un botón
     selectBotones.addEventListener('change', () => {
         inputMarginContainer.style.display = 'block';
     });
 
-    inputMargin.addEventListener('input', (event) => {
-        let selectedMargin = event.target.value;
+    // Aplicar los márgenes cuando se hace clic en el botón "Aplicar Cambios"
+    applyButton.addEventListener('click', () => {
         let selectedIndex = selectBotones.value;
         let boton = botones[selectedIndex];
-        boton.style.marginLeft = selectedMargin + 'px';
-        boton.style.marginRight = selectedMargin + 'px';
+
+        let marginLeft = inputMarginLeft.value || 0;
+        let marginRight = inputMarginRight.value || 0;
+        let marginTop = inputMarginTop.value || 0;
+        let marginBottom = inputMarginBottom.value || 0;
+
+        boton.style.marginLeft = marginLeft + 'px';
+        boton.style.marginRight = marginRight + 'px';
+        boton.style.marginTop = marginTop + 'px';
+        boton.style.marginBottom = marginBottom + 'px';
     });
 
-    tituloSeleccionado.textContent = 'Margen Lateral Botón Seleccionado';
+    tituloSeleccionado.textContent = 'Configuración de Márgenes del Botón Seleccionado';
 }
 //Fin Funciones del modificar texto
 
+function CambiarOrientacion() {
+    const radios = document.querySelectorAll('input[name="orientacion"]');
+    radios.forEach(radio => {
+        radio.addEventListener('change', function() {
+            const selectedValue = this.value;
+            const textos = document.getElementsByClassName('menu_anchor');
+            const clases = ['horizontal', 'vertical_izquierda', 'vertical_centro', 'vertical_derecha'];
+
+            // Remover todas las clases de orientación previamente aplicadas
+            Array.from(textos).forEach(texto => {
+                clases.forEach(clase => texto.classList.remove(clase));
+            });
+
+            // Añadir la nueva clase de orientación
+            Array.from(textos).forEach(texto => {
+                texto.classList.add(selectedValue);
+            });
+        });
+    });
+}
 
 //FUNCIONES DE "MENU BOTON"
 function bgcolor() {

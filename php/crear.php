@@ -113,7 +113,7 @@ BPPJ
                     <div id="btn-height" class="btn__style">Alto Bóton</div>
                     <div id="btn-borde-style" class="btn__style">Estilo Borde Bóton</div>
                     <div id="btn-border-color" class="btn__style">Color Borde Bóton</div>
-                    <div id="btn-separador-boton" class="btn__style">Separar Botones</div>
+                    <div class="btn__style_texto" onclick="showMenu('SepararContenedores')">Separador de botones</div>
                      
                 </div>
                 <div id="MenuSeleccionado" class="MenuSeleccionado">
@@ -129,6 +129,25 @@ BPPJ
                         </div>
                     </div>
                 </div>
+
+                
+
+
+                <div id="MenuSeparar" class="MenuSeleccionado">
+                    <div class="seleccionado">
+                        <div class="seleccionado__container-title">
+                            <div class="seleccionado_titulo">Titulo</div>
+                            <div id="seleccionado_separar__cerrar" class="seleccionado__cerrar">X</div> 
+                        </div>
+                        <div id="seleccionado_separar__contenido" class="seleccionado__contenido">
+                            <div class="seleccionado__contenedor"></div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
             </div>
 
             <div id="estilos" class="estilos">
@@ -158,19 +177,19 @@ BPPJ
                             </div>
                         </div>
                         <div class="container-btn-modificar_texto">
-                            <div class="btn__style_texto" onclick="showMenu('SepararContenedores')">Separador de botones</div>
+                            <div class="btn__style_texto"  onclick="mostrarMenuCambiarColorTexto()">Cambiar color texto</div>
                             
                         </div>
 
 
-                        <div id="MenuSeparar" class="MenuSeleccionado">
+                        <div id="MenuColorTexto" class="MenuSeleccionado">
                             <div class="seleccionado">
-                                <div class="seleccionado__container-title">
-                                    <div class="seleccionado_titulo">Titulo</div>
-                                    <div id="seleccionado_separar__cerrar" class="seleccionado__cerrar">X</div> 
+                                <div class="seleccionado_color__container-title">
+                                    <div class="seleccionado_color_titulo">Titulo</div>
+                                    <div id="seleccionado_color__cerrar" class="seleccionado__cerrar">X</div> 
                                 </div>
-                                <div id="seleccionado_separar__contenido" class="seleccionado__contenido">
-                                    <div class="seleccionado__contenedor"></div>
+                                <div id="seleccionado_color__contenido" class="seleccionado__contenido">
+                                    <div class="seleccionado_color__contenedor"></div>
                                 </div>
                             </div>
                         </div>

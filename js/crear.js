@@ -71,6 +71,19 @@ document.addEventListener('DOMContentLoaded', function() {
     CambiarTamanioTexto();
 
 
+    document.querySelector('.btn__style_texto').addEventListener('click', () => {
+        let menuColorTexto = document.getElementById('MenuColorTexto');
+        let contenedor = menuColorTexto.querySelector('.seleccionado_color__contenedor');
+        CambiarColorTexto(contenedor);
+        menuColorTexto.style.display = 'block';
+    });
+    
+    // Para cerrar el menú
+    document.getElementById('seleccionado_color__cerrar').addEventListener('click', () => {
+        document.getElementById('MenuColorTexto').style.display = 'none';
+    });
+
+
     document.getElementById('checkboxNegrita').addEventListener('change', function() {
         let isChecked = this.checked;
 
@@ -1439,6 +1452,119 @@ function showMenu(action) {
     });
 }
 
+function mostrarMenuCambiarColorTexto() {
+    const menuColorTexto = document.getElementById('MenuColorTexto');
+    const contenedor = menuColorTexto.querySelector('.seleccionado_color__contenedor');
+    menuColorTexto.style.display = 'block';
+    CambiarColorTexto(contenedor);
+}
+
+function cerrarMenuColorTexto() {
+    const menuColorTexto = document.getElementById('MenuColorTexto');
+    menuColorTexto.style.display = 'none';
+}
+
+function CambiarColorTexto(contenedor) {
+    const tituloSeleccionado = document.querySelector('.seleccionado_color_titulo');
+    let seleccionado__contenedor = contenedor;
+
+    // Limpiar el contenedor
+    seleccionado__contenedor.innerHTML = '';
+
+    // Crear y agregar los elementos para la selección del botón
+    let divNombre = document.createElement('div');
+    divNombre.textContent = 'Seleccionar botón:';
+
+    let selectBotones = document.createElement('select');
+    let defaultOption = document.createElement('option');
+    defaultOption.textContent = 'Seleccione un botón';
+    defaultOption.disabled = true;
+    defaultOption.selected = true;
+    selectBotones.appendChild(defaultOption);
+
+    let botones = document.querySelectorAll('.menu_anchor');
+    botones.forEach((boton, index) => {
+        let option = document.createElement('option');
+        option.value = index;
+        option.textContent = boton.textContent;
+        selectBotones.appendChild(option);
+    });
+
+    // Crear y agregar el campo para cambiar el color del texto
+    let inputColorContainer = document.createElement('div');
+    inputColorContainer.style.display = 'none';
+
+    let divColor = document.createElement('div');
+    divColor.textContent = 'Color del Texto:';
+
+    let inputColor = document.createElement('input');
+    inputColor.type = 'color';
+    inputColor.value = '#000000'; // Inicializar con color negro
+
+    inputColorContainer.appendChild(divColor);
+    inputColorContainer.appendChild(inputColor);
+
+    // Botón para quitar cambios
+    let divClearButton = document.createElement('div');
+    divClearButton.style.marginTop = '10px';
+
+    let clearButton = document.createElement('button');
+    clearButton.textContent = 'Quitar Cambios';
+
+    divClearButton.appendChild(clearButton);
+
+    // Botón para aplicar color a todos los botones
+    let divApplyAllButton = document.createElement('div');
+    divApplyAllButton.style.marginTop = '10px';
+
+    let applyAllButton = document.createElement('button');
+    applyAllButton.textContent = 'Aplicar a Todos';
+
+    divApplyAllButton.appendChild(applyAllButton);
+
+    // Añadir todos los elementos al contenedor
+    seleccionado__contenedor.appendChild(divNombre);
+    seleccionado__contenedor.appendChild(selectBotones);
+    seleccionado__contenedor.appendChild(inputColorContainer);
+    seleccionado__contenedor.appendChild(divClearButton);
+    seleccionado__contenedor.appendChild(divApplyAllButton);
+
+    // Mostrar el contenedor de color cuando se selecciona un botón
+    selectBotones.addEventListener('change', () => {
+        inputColorContainer.style.display = 'block';
+    });
+
+    // Aplicar el color automáticamente cuando cambia el valor del input
+    function applyColor() {
+        let selectedIndex = selectBotones.value;
+        let boton = botones[selectedIndex];
+        boton.style.color = inputColor.value;
+    }
+
+    inputColor.addEventListener('input', applyColor);
+
+    // Quitar cambios de color
+    clearButton.addEventListener('click', () => {
+        let selectedIndex = selectBotones.value;
+        let boton = botones[selectedIndex];
+        boton.style.color = '';
+    });
+
+    // Aplicar color a todos los botones
+    applyAllButton.addEventListener('click', () => {
+        let color = inputColor.value;
+        botones.forEach(boton => {
+            boton.style.color = color;
+        });
+    });
+
+    tituloSeleccionado.textContent = 'Cambiar Color del Texto del Botón';
+}
+
+//Fin Funciones del modificar texto
+
+//FUNCIONES DE "MENU BOTON"
+
 function SepararContenedores(contenedor) {
     const tituloSeleccionado = document.querySelector('.seleccionado_titulo');
     let seleccionado__contenedor = contenedor;
@@ -1451,6 +1577,12 @@ function SepararContenedores(contenedor) {
     divNombre.textContent = 'Seleccionar botón:';
 
     let selectBotones = document.createElement('select');
+    let defaultOption = document.createElement('option');
+    defaultOption.textContent = 'Seleccione un botón';
+    defaultOption.disabled = true;
+    defaultOption.selected = true;
+    selectBotones.appendChild(defaultOption);
+
     let botones = document.querySelectorAll('.menu_anchor');
     botones.forEach((boton, index) => {
         let option = document.createElement('option');
@@ -1469,7 +1601,7 @@ function SepararContenedores(contenedor) {
     let inputMarginLeft = document.createElement('input');
     inputMarginLeft.type = 'number';
     inputMarginLeft.min = 0;
-    inputMarginLeft.value = 10;
+    inputMarginLeft.value = 0;
     inputMarginLeft.placeholder = 'Izquierda';
 
     let divMarginRight = document.createElement('div');
@@ -1478,7 +1610,7 @@ function SepararContenedores(contenedor) {
     let inputMarginRight = document.createElement('input');
     inputMarginRight.type = 'number';
     inputMarginRight.min = 0;
-    inputMarginRight.value = 10;
+    inputMarginRight.value = 0;
     inputMarginRight.placeholder = 'Derecha';
 
     let divMarginTop = document.createElement('div');
@@ -1487,7 +1619,7 @@ function SepararContenedores(contenedor) {
     let inputMarginTop = document.createElement('input');
     inputMarginTop.type = 'number';
     inputMarginTop.min = 0;
-    inputMarginTop.value = 10;
+    inputMarginTop.value = 0;
     inputMarginTop.placeholder = 'Arriba';
     
     let divMarginBottom = document.createElement('div');
@@ -1496,14 +1628,26 @@ function SepararContenedores(contenedor) {
     let inputMarginBottom = document.createElement('input');
     inputMarginBottom.type = 'number';
     inputMarginBottom.min = 0;
-    inputMarginBottom.value = 10;
+    inputMarginBottom.value = 0;
     inputMarginBottom.placeholder = 'Abajo';
 
-    let divApplyButton = document.createElement('div');
-    divApplyButton.style.marginTop = '10px';
+    // Botón para quitar cambios
+    let divClearButton = document.createElement('div');
+    divClearButton.style.marginTop = '10px';
     
-    let applyButton = document.createElement('button');
-    applyButton.textContent = 'Aplicar Cambios';
+    let clearButton = document.createElement('button');
+    clearButton.textContent = 'Quitar Cambios';
+    
+    divClearButton.appendChild(clearButton);
+
+    // Botón para aplicar márgenes a todos los botones
+    let divApplyAllButton = document.createElement('div');
+    divApplyAllButton.style.marginTop = '10px';
+    
+    let applyAllButton = document.createElement('button');
+    applyAllButton.textContent = 'Aplicar a Todos';
+    
+    divApplyAllButton.appendChild(applyAllButton);
 
     // Añadir todos los elementos al contenedor
     inputMarginContainer.appendChild(divMarginLeft);
@@ -1514,20 +1658,20 @@ function SepararContenedores(contenedor) {
     inputMarginContainer.appendChild(inputMarginTop);
     inputMarginContainer.appendChild(divMarginBottom);
     inputMarginContainer.appendChild(inputMarginBottom);
-    divApplyButton.appendChild(applyButton);
 
     seleccionado__contenedor.appendChild(divNombre);
     seleccionado__contenedor.appendChild(selectBotones);
     seleccionado__contenedor.appendChild(inputMarginContainer);
-    seleccionado__contenedor.appendChild(divApplyButton);
+    seleccionado__contenedor.appendChild(divClearButton);
+    seleccionado__contenedor.appendChild(divApplyAllButton);
 
     // Mostrar el contenedor de márgenes cuando se selecciona un botón
     selectBotones.addEventListener('change', () => {
         inputMarginContainer.style.display = 'block';
     });
 
-    // Aplicar los márgenes cuando se hace clic en el botón "Aplicar Cambios"
-    applyButton.addEventListener('click', () => {
+    // Aplicar los márgenes automáticamente cuando cambian los valores de los inputs
+    function applyMargins() {
         let selectedIndex = selectBotones.value;
         let boton = botones[selectedIndex];
 
@@ -1540,11 +1684,42 @@ function SepararContenedores(contenedor) {
         boton.style.marginRight = marginRight + 'px';
         boton.style.marginTop = marginTop + 'px';
         boton.style.marginBottom = marginBottom + 'px';
+    }
+
+    inputMarginLeft.addEventListener('input', applyMargins);
+    inputMarginRight.addEventListener('input', applyMargins);
+    inputMarginTop.addEventListener('input', applyMargins);
+    inputMarginBottom.addEventListener('input', applyMargins);
+
+    // Quitar cambios de márgenes
+    clearButton.addEventListener('click', () => {
+        let selectedIndex = selectBotones.value;
+        let boton = botones[selectedIndex];
+
+        boton.style.marginLeft = '';
+        boton.style.marginRight = '';
+        boton.style.marginTop = '';
+        boton.style.marginBottom = '';
+    });
+
+    // Aplicar márgenes a todos los botones
+    applyAllButton.addEventListener('click', () => {
+        let marginLeft = inputMarginLeft.value || 0;
+        let marginRight = inputMarginRight.value || 0;
+        let marginTop = inputMarginTop.value || 0;
+        let marginBottom = inputMarginBottom.value || 0;
+
+        botones.forEach(boton => {
+            boton.style.marginLeft = marginLeft + 'px';
+            boton.style.marginRight = marginRight + 'px';
+            boton.style.marginTop = marginTop + 'px';
+            boton.style.marginBottom = marginBottom + 'px';
+        });
     });
 
     tituloSeleccionado.textContent = 'Configuración de Márgenes del Botón Seleccionado';
 }
-//Fin Funciones del modificar texto
+
 
 function CambiarOrientacion() {
     const radios = document.querySelectorAll('input[name="orientacion"]');

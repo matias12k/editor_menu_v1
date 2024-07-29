@@ -96,6 +96,18 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    document.getElementById('checkboxsubrayar').addEventListener('change', function() {
+        let isChecked = this.checked;
+    
+        // Obtener todos los elementos con la clase 'menu_anchor'
+        let textos = document.getElementsByClassName('menu_anchor');
+    
+        // Iterar sobre todos los elementos con la clase 'menu_anchor' y cambiar su textDecoration
+        Array.from(textos).forEach(texto => {
+            texto.style.textDecoration = isChecked ? 'underline' : 'none';
+        });
+    });
+    
     
 
 
@@ -1429,6 +1441,16 @@ function PonerNegrita() {
     });
 }
 
+function Subrayar() {
+    // Obtener todos los elementos con la clase 'menu_anchor'
+    let textos = document.getElementsByClassName('menu_anchor');
+
+    // Iterar sobre todos los elementos con la clase 'menu_anchor' y cambiar su textDecoration a 'underline'
+    Array.from(textos).forEach(texto => {
+        texto.style.textDecoration = 'underline';
+    });
+}
+
 
 function showMenu(action) {
     const menu = document.getElementById('MenuSeparar');
@@ -1560,6 +1582,9 @@ function CambiarColorTexto(contenedor) {
 
     tituloSeleccionado.textContent = 'Cambiar Color del Texto del Botón';
 }
+
+
+
 
 //Fin Funciones del modificar texto
 

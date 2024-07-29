@@ -280,7 +280,9 @@ input[type=number]::-webkit-inner-spin-button {
     flex-direction: row;            /* Organiza los elementos hijos en una fila */
     gap: 20px; /* Añade un espacio de 20px entre los elementos internos */
 }
- 
+
+
+.tamanio__titulo,
 .fuentes__titulo, 
 .letras__titulo, 
 .color-letras__titulo, 

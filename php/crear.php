@@ -211,12 +211,12 @@ BPPJ
                                 
                             <div class="inputs__xd">
                                 <label for="" class="input__estilo">Cursiva:</label>
-                                <input type="checkbox">                                
+                                <input type="checkbox" id="checkboxcursiva">                                
                             </div>
                                 
                             <div class="inputs__xd">
                                 <label for="" class="input__estilo">Subrayar:</label>
-                                <input type="checkbox">                                
+                                <input type="checkbox" id="checkboxsubrayar">                                
                             </div>
                             
                         </div>

@@ -147,6 +147,8 @@ BPPJ
 
 
 
+                
+
 
             </div>
 
@@ -178,6 +180,7 @@ BPPJ
                         </div>
                         <div class="container-btn-modificar_texto">
                             <div class="btn__style_texto"  onclick="mostrarMenuCambiarColorTexto()">Cambiar color texto</div>
+                            <div class="btn__style_texto" onclick="abrirMenuTexto()">Posicion texto</div> 
                             
                         </div>
 
@@ -194,7 +197,27 @@ BPPJ
                             </div>
                         </div>
 
-                        
+                        <div id="MenuTexto" class="MenuTexto">
+                            <div class="seleccionado">
+                                <div class="seleccionado__container-title">
+                                    <div class="seleccionado_titulo">Posición del Texto</div>
+                                    <div id="seleccionado_texto__cerrar" class="seleccionado__cerrar" onclick="cerrarMenuTexto()">X</div> 
+                                </div>
+                                <div id="seleccionado_texto__contenido" class="seleccionado__contenido">
+                                    <div class="seleccionado__contenedor">
+                                        <label for="alineacionTexto">Alineación del texto:</label>
+                                        <select id="alineacionTexto" onchange="cambiarAlineacionTexto()">
+                                            <option value="left">Izquierda</option>
+                                            <option value="center">Centro</option>
+                                            <option value="right">Derecha</option>
+                                            <option value="justify">Justificado</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
                     
                     </div>
                     
@@ -211,12 +234,12 @@ BPPJ
                                 
                             <div class="inputs__xd">
                                 <label for="" class="input__estilo">Cursiva:</label>
-                                <input type="checkbox" id="checkboxcursiva">                                
+                                <input type="checkbox" id="checkboxCursiva" onchange="toggleCursiva(this)">
                             </div>
                                 
                             <div class="inputs__xd">
                                 <label for="" class="input__estilo">Subrayar:</label>
-                                <input type="checkbox" id="checkboxsubrayar">                                
+                                <input type="checkbox" id="checkboxSubrayar" onchange="toggleSubrayado(this)">                            
                             </div>
                             
                         </div>

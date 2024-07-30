@@ -96,17 +96,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    document.getElementById('checkboxsubrayar').addEventListener('change', function() {
-        let isChecked = this.checked;
     
-        // Obtener todos los elementos con la clase 'menu_anchor'
-        let textos = document.getElementsByClassName('menu_anchor');
-    
-        // Iterar sobre todos los elementos con la clase 'menu_anchor' y cambiar su textDecoration
-        Array.from(textos).forEach(texto => {
-            texto.style.textDecoration = isChecked ? 'underline' : 'none';
-        });
-    });
     
     
 
@@ -1440,18 +1430,21 @@ function PonerNegrita() {
         texto.style.fontWeight = 'bold';
     });
 }
-
-function Subrayar() {
-    // Obtener todos los elementos con la clase 'menu_anchor'
+function toggleCursiva(checkbox) {
     let textos = document.getElementsByClassName('menu_anchor');
-
-    // Iterar sobre todos los elementos con la clase 'menu_anchor' y cambiar su textDecoration a 'underline'
     Array.from(textos).forEach(texto => {
-        texto.style.textDecoration = 'underline';
+        texto.style.fontStyle = checkbox.checked ? 'italic' : 'normal';
     });
 }
 
+function toggleSubrayado(checkbox) {
+    let textos = document.getElementsByClassName('menu_anchor');
+    Array.from(textos).forEach(texto => {
+        texto.style.textDecoration = checkbox.checked ? 'underline' : 'none';
+    });
+}
 
+        
 function showMenu(action) {
     const menu = document.getElementById('MenuSeparar');
     const closeBtn = document.getElementById('seleccionado_separar__cerrar');
@@ -1583,8 +1576,21 @@ function CambiarColorTexto(contenedor) {
     tituloSeleccionado.textContent = 'Cambiar Color del Texto del Botón';
 }
 
+function abrirMenuTexto() {
+    document.getElementById('MenuTexto').style.display = 'block';
+}
 
+function cerrarMenuTexto() {
+    document.getElementById('MenuTexto').style.display = 'none';
+}
 
+function cambiarAlineacionTexto() {
+    let alineacion = document.getElementById('alineacionTexto').value;
+    let textos = document.getElementsByClassName('menu_anchor');
+    Array.from(textos).forEach(texto => {
+        texto.style.textAlign = alineacion;
+    });
+}
 
 //Fin Funciones del modificar texto
 

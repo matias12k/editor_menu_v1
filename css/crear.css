@@ -733,7 +733,7 @@ input[type="submit"] {
 input[type="submit"]:hover {
     background-color: #0056b3; /* Color de fondo al pasar el ratón por encima */
 }
-
+.MenuTexto,
 .MenuSeparar,
 .MenuSeleccionado{
     display: none;

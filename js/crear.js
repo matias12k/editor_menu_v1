@@ -1592,6 +1592,8 @@ function cambiarAlineacionTexto() {
     });
 }
 
+
+
 //Fin Funciones del modificar texto
 
 //FUNCIONES DE "MENU BOTON"

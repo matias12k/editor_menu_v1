@@ -1576,23 +1576,76 @@ function CambiarColorTexto(contenedor) {
     tituloSeleccionado.textContent = 'Cambiar Color del Texto del Botón';
 }
 
+let botonSeleccionado = null;
+
 function abrirMenuTexto() {
     document.getElementById('MenuTexto').style.display = 'block';
+    actualizarOpcionesBotones();
 }
 
 function cerrarMenuTexto() {
     document.getElementById('MenuTexto').style.display = 'none';
 }
 
-function cambiarAlineacionTexto() {
-    let alineacion = document.getElementById('alineacionTexto').value;
-    let textos = document.getElementsByClassName('menu_anchor');
-    Array.from(textos).forEach(texto => {
-        texto.style.textAlign = alineacion;
+function actualizarOpcionesBotones() {
+    let selectBotones = document.getElementById('selectBotonesTexto');
+    let botones = document.querySelectorAll('.menu_anchor');
+
+    // Limpiar opciones anteriores
+    selectBotones.innerHTML = '<option value="">Seleccione un botón</option>';
+
+    // Añadir opciones para cada botón
+    botones.forEach((boton, index) => {
+        let option = document.createElement('option');
+        option.value = index;
+        option.textContent = boton.textContent || `Botón ${index + 1}`;
+        selectBotones.appendChild(option);
     });
+
+    // Ocultar el contenedor de alineación de texto
+    document.getElementById('alineacionTextoContainer').style.display = 'none';
 }
 
+function actualizarBotonSeleccionado() {
+    let selectBotones = document.getElementById('selectBotonesTexto');
+    botonSeleccionado = selectBotones.value;
 
+    // Mostrar u ocultar el contenedor de alineación de texto basado en la selección del botón
+    let alineacionTextoContainer = document.getElementById('alineacionTextoContainer');
+    if (botonSeleccionado) {
+        alineacionTextoContainer.style.display = 'block';
+    } else {
+        alineacionTextoContainer.style.display = 'none';
+    }
+}
+
+function cambiarAlineacionTexto() {
+    let alineacion = document.getElementById('alineacionTexto').value;
+
+    if (botonSeleccionado !== null) {
+        let botones = document.querySelectorAll('.menu_anchor');
+        let boton = botones[botonSeleccionado];
+        
+        // Aplicar la alineación al botón seleccionado
+        if (boton) {
+            boton.style.textAlign = alineacion;
+        }
+    }
+}
+
+function cambiarAlineacionVertical() {
+    let alineacionVertical = document.getElementById('alineacionVertical').value;
+
+    if (botonSeleccionado !== null) {
+        let botones = document.querySelectorAll('.menu_anchor');
+        let boton = botones[botonSeleccionado];
+        
+        // Aplicar la alineación vertical al botón seleccionado
+        if (boton) {
+            boton.style.verticalAlign = alineacionVertical;
+        }
+    }
+}
 
 //Fin Funciones del modificar texto
 

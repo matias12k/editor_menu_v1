@@ -205,6 +205,13 @@ BPPJ
                                 </div>
                                 <div id="seleccionado_texto__contenido" class="seleccionado__contenido">
                                     <div class="seleccionado__contenedor">
+                                    <label for="selectBotonesTexto">Seleccionar botón:</label>
+                                    <select id="selectBotonesTexto" onchange="actualizarBotonSeleccionado()">
+                                        <option value="">Seleccione un botón</option>
+                                            <!-- Opciones de botones se añadirán dinámicamente con JavaScript -->
+                                    </select>
+                                    
+                                    <div id="alineacionTextoContainer" style="display: none;">
                                         <label for="alineacionTexto">Alineación del texto:</label>
                                         <select id="alineacionTexto" onchange="cambiarAlineacionTexto()">
                                             <option value="left">Izquierda</option>
@@ -212,6 +219,19 @@ BPPJ
                                             <option value="right">Derecha</option>
                                             <option value="justify">Justificado</option>
                                         </select>
+                                        <br><br>
+                                        <label for="alineacionVertical">Alineación vertical:</label>
+                                        <select id="alineacionVertical" onchange="cambiarAlineacionVertical()">
+                                            <option value="flex-start">Arriba</option>
+                                            <option value="center">Centro</option>
+                                            <option value="flex-end">Abajo</option>
+                                        </select>
+                                    </div>
+
+
+
+
+
                                     </div>
                                 </div>
                             </div>

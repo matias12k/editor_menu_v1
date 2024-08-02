@@ -587,6 +587,7 @@ input[type=number]::-webkit-inner-spin-button {
  }
  
  /* Contenedor de los botones de modificación */
+
  .container-btn-modificar {
     display: flex;
     flex-wrap: wrap;
@@ -598,7 +599,7 @@ input[type=number]::-webkit-inner-spin-button {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    margin: 30px 1px 0px 1px;
+    margin: 30px 20px 0px 20px;
  }
  
  /* Estilo de cada botón dentro del menú de modificación de botones */

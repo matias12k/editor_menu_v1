@@ -169,18 +169,35 @@ BPPJ
                             <div class="tamanio__titulo">Tamaño de Letra</div>
                             <div class="tamanio__select">
                                 
-                                <select id="selectTamanio">
-                                    <option value="12">12 </option>
-                                    <option value="13">13 </option>
-                                    <option value="14" selected>14 </option>
-                                    <option value="15">15</option>
-                                    <option value="16">16</option>
-                                </select>
+                            <select id="selectTamanio">
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12" selected>12</option> <!-- Selección predeterminada -->
+                                <option value="14">14</option>
+                                <option value="16">16</option>
+                                <option value="18">18</option>
+                                <option value="20">20</option>
+                                <option value="22">22</option>
+                                <option value="24">24</option>
+                                <option value="26">26</option>
+                                <option value="28">28</option>
+                                <option value="36">36</option>
+                                <option value="48">48</option>
+                                <option value="72">72</option>
+                            </select>
+
+                            
+
                             </div>
                         </div>
                         <div class="container-btn-modificar_texto">
                             <div class="btn__style_texto"  onclick="mostrarMenuCambiarColorTexto()">Cambiar color texto</div>
                             <div class="btn__style_texto" onclick="abrirMenuTexto()">Posicion texto</div> 
+                            <div class="btn__style_texto"  >Viñeta</div>
+                            <div class="btn__style_texto" >Animacion</div>
+                            <div class="btn__style_texto" >Restablecer cambios</div>  
                             
                         </div>
 
@@ -226,6 +243,15 @@ BPPJ
                                             <option value="center">Centro</option>
                                             <option value="flex-end">Abajo</option>
                                         </select>
+                                        <br><br>
+                                        <button onclick="aplicarAlineacionATodos()">Aplicar a todos</button>
+                                        <button onclick="deshacerCambiosEnTodos()">Deshacer cambios</button>
+
+
+
+
+
+
                                     </div>
 
 

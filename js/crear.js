@@ -1522,6 +1522,7 @@ function CambiarColorTexto(contenedor) {
     // Botón para quitar cambios
     let divClearButton = document.createElement('div');
     divClearButton.style.marginTop = '10px';
+    divClearButton.style.display = 'none';
 
     let clearButton = document.createElement('button');
     clearButton.textContent = 'Quitar Cambios';
@@ -1531,6 +1532,7 @@ function CambiarColorTexto(contenedor) {
     // Botón para aplicar color a todos los botones
     let divApplyAllButton = document.createElement('div');
     divApplyAllButton.style.marginTop = '10px';
+    divApplyAllButton.style.display = 'none';
 
     let applyAllButton = document.createElement('button');
     applyAllButton.textContent = 'Aplicar a Todos';
@@ -1544,25 +1546,31 @@ function CambiarColorTexto(contenedor) {
     seleccionado__contenedor.appendChild(divClearButton);
     seleccionado__contenedor.appendChild(divApplyAllButton);
 
-    // Mostrar el contenedor de color cuando se selecciona un botón
+    // Mostrar el contenedor de color y botones adicionales cuando se selecciona un botón
     selectBotones.addEventListener('change', () => {
         inputColorContainer.style.display = 'block';
+        divClearButton.style.display = 'block';
+        divApplyAllButton.style.display = 'block';
     });
 
     // Aplicar el color automáticamente cuando cambia el valor del input
     function applyColor() {
         let selectedIndex = selectBotones.value;
-        let boton = botones[selectedIndex];
-        boton.style.color = inputColor.value;
+        if (selectedIndex !== '') {
+            let boton = botones[selectedIndex];
+            boton.style.color = inputColor.value;
+        }
     }
 
     inputColor.addEventListener('input', applyColor);
 
-    // Quitar cambios de color
+    // Quitar cambios de color para todos los botones
     clearButton.addEventListener('click', () => {
-        let selectedIndex = selectBotones.value;
-        let boton = botones[selectedIndex];
-        boton.style.color = '';
+        botones.forEach(boton => {
+            boton.style.color = '';
+        });
+        // Restablecer el color en el selector
+        inputColor.value = '#000000';
     });
 
     // Aplicar color a todos los botones
@@ -1576,17 +1584,22 @@ function CambiarColorTexto(contenedor) {
     tituloSeleccionado.textContent = 'Cambiar Color del Texto del Botón';
 }
 
-let botonSeleccionado = null;
+let botonSeleccionado = null; // Variable para almacenar el índice del botón seleccionado
+let estilosOriginales = []; // Array para guardar los estilos originales de los botones
 
+// Función para abrir el menú de texto y configurar las opciones de botones
 function abrirMenuTexto() {
     document.getElementById('MenuTexto').style.display = 'block';
-    actualizarOpcionesBotones();
+    actualizarOpcionesBotones(); // Actualiza las opciones del selector de botones
+    guardarEstilosOriginales(); // Guarda los estilos originales de los botones
 }
 
+// Función para cerrar el menú de texto
 function cerrarMenuTexto() {
     document.getElementById('MenuTexto').style.display = 'none';
 }
 
+// Función para actualizar las opciones del selector de botones
 function actualizarOpcionesBotones() {
     let selectBotones = document.getElementById('selectBotonesTexto');
     let botones = document.querySelectorAll('.menu_anchor');
@@ -1594,7 +1607,7 @@ function actualizarOpcionesBotones() {
     // Limpiar opciones anteriores
     selectBotones.innerHTML = '<option value="">Seleccione un botón</option>';
 
-    // Añadir opciones para cada botón
+    // Añadir opciones para cada botón encontrado con la clase 'menu_anchor'
     botones.forEach((boton, index) => {
         let option = document.createElement('option');
         option.value = index;
@@ -1602,51 +1615,75 @@ function actualizarOpcionesBotones() {
         selectBotones.appendChild(option);
     });
 
-    // Ocultar el contenedor de alineación de texto
+    // Ocultar contenedor de alineación hasta que se seleccione un botón
     document.getElementById('alineacionTextoContainer').style.display = 'none';
 }
 
+// Función para actualizar el botón seleccionado desde el selector
 function actualizarBotonSeleccionado() {
     let selectBotones = document.getElementById('selectBotonesTexto');
     botonSeleccionado = selectBotones.value;
 
-    // Mostrar u ocultar el contenedor de alineación de texto basado en la selección del botón
-    let alineacionTextoContainer = document.getElementById('alineacionTextoContainer');
-    if (botonSeleccionado) {
-        alineacionTextoContainer.style.display = 'block';
-    } else {
-        alineacionTextoContainer.style.display = 'none';
-    }
+    // Mostrar contenedor de alineación solo si hay un botón seleccionado
+    document.getElementById('alineacionTextoContainer').style.display = botonSeleccionado ? 'block' : 'none';
 }
 
+// Función para cambiar la alineación horizontal del texto en el botón seleccionado
 function cambiarAlineacionTexto() {
     let alineacion = document.getElementById('alineacionTexto').value;
+    let botones = document.querySelectorAll('.menu_anchor');
 
     if (botonSeleccionado !== null) {
-        let botones = document.querySelectorAll('.menu_anchor');
         let boton = botones[botonSeleccionado];
-        
-        // Aplicar la alineación al botón seleccionado
-        if (boton) {
-            boton.style.textAlign = alineacion;
-        }
+        boton.style.textAlign = alineacion; // Aplica la alineación seleccionada
     }
 }
 
+// Función para cambiar la alineación vertical del texto en el botón seleccionado
 function cambiarAlineacionVertical() {
     let alineacionVertical = document.getElementById('alineacionVertical').value;
+    let botones = document.querySelectorAll('.menu_anchor');
 
     if (botonSeleccionado !== null) {
-        let botones = document.querySelectorAll('.menu_anchor');
         let boton = botones[botonSeleccionado];
-        
-        // Aplicar la alineación vertical al botón seleccionado
-        if (boton) {
-            boton.style.verticalAlign = alineacionVertical;
-        }
+        boton.style.display = 'flex';
+        boton.style.alignItems = alineacionVertical; // Aplica la alineación vertical seleccionada
     }
 }
 
+// Función para aplicar las configuraciones de alineación a todos los botones
+function aplicarAlineacionATodos() {
+    let alineacion = document.getElementById('alineacionTexto').value;
+    let alineacionVertical = document.getElementById('alineacionVertical').value;
+    let botones = document.querySelectorAll('.menu_anchor');
+
+    botones.forEach(boton => {
+        boton.style.textAlign = alineacion; // Aplica la alineación horizontal a todos los botones
+        boton.style.display = 'flex';
+        boton.style.alignItems = alineacionVertical; // Aplica la alineación vertical a todos los botones
+    });
+}
+
+// Función para deshacer todos los cambios aplicados y restaurar los estilos originales
+function deshacerCambiosEnTodos() {
+    let botones = document.querySelectorAll('.menu_anchor');
+
+    botones.forEach((boton, index) => {
+        boton.style.textAlign = estilosOriginales[index].textAlign; // Restaura la alineación horizontal original
+        boton.style.alignItems = estilosOriginales[index].alignItems; // Restaura la alineación vertical original
+        boton.style.display = estilosOriginales[index].display; // Restaura la propiedad display original
+    });
+}
+
+// Función para guardar los estilos originales de los botones antes de aplicar cambios
+function guardarEstilosOriginales() {
+    let botones = document.querySelectorAll('.menu_anchor');
+    estilosOriginales = Array.from(botones).map(boton => ({
+        textAlign: boton.style.textAlign,
+        alignItems: boton.style.alignItems,
+        display: boton.style.display
+    }));
+}
 //Fin Funciones del modificar texto
 
 //FUNCIONES DE "MENU BOTON"
@@ -1720,7 +1757,8 @@ function SepararContenedores(contenedor) {
     // Botón para quitar cambios
     let divClearButton = document.createElement('div');
     divClearButton.style.marginTop = '10px';
-    
+    divClearButton.style.display = 'none'; // Ocultar inicialmente
+
     let clearButton = document.createElement('button');
     clearButton.textContent = 'Quitar Cambios';
     
@@ -1729,7 +1767,8 @@ function SepararContenedores(contenedor) {
     // Botón para aplicar márgenes a todos los botones
     let divApplyAllButton = document.createElement('div');
     divApplyAllButton.style.marginTop = '10px';
-    
+    divApplyAllButton.style.display = 'none'; // Ocultar inicialmente
+
     let applyAllButton = document.createElement('button');
     applyAllButton.textContent = 'Aplicar a Todos';
     
@@ -1751,9 +1790,11 @@ function SepararContenedores(contenedor) {
     seleccionado__contenedor.appendChild(divClearButton);
     seleccionado__contenedor.appendChild(divApplyAllButton);
 
-    // Mostrar el contenedor de márgenes cuando se selecciona un botón
+    // Mostrar el contenedor de márgenes y botones cuando se selecciona un botón
     selectBotones.addEventListener('change', () => {
         inputMarginContainer.style.display = 'block';
+        divClearButton.style.display = 'block';
+        divApplyAllButton.style.display = 'block';
     });
 
     // Aplicar los márgenes automáticamente cuando cambian los valores de los inputs
@@ -1777,15 +1818,14 @@ function SepararContenedores(contenedor) {
     inputMarginTop.addEventListener('input', applyMargins);
     inputMarginBottom.addEventListener('input', applyMargins);
 
-    // Quitar cambios de márgenes
+    // Quitar cambios de márgenes para todos los botones
     clearButton.addEventListener('click', () => {
-        let selectedIndex = selectBotones.value;
-        let boton = botones[selectedIndex];
-
-        boton.style.marginLeft = '';
-        boton.style.marginRight = '';
-        boton.style.marginTop = '';
-        boton.style.marginBottom = '';
+        botones.forEach(boton => {
+            boton.style.marginLeft = '';
+            boton.style.marginRight = '';
+            boton.style.marginTop = '';
+            boton.style.marginBottom = '';
+        });
     });
 
     // Aplicar márgenes a todos los botones
@@ -1805,8 +1845,6 @@ function SepararContenedores(contenedor) {
 
     tituloSeleccionado.textContent = 'Configuración de Márgenes del Botón Seleccionado';
 }
-
-
 function CambiarOrientacion() {
     const radios = document.querySelectorAll('input[name="orientacion"]');
     radios.forEach(radio => {

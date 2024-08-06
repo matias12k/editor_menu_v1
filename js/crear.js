@@ -1684,6 +1684,93 @@ function guardarEstilosOriginales() {
         display: boton.style.display
     }));
 }
+
+
+
+
+
+
+
+
+function mostrarMenuAnimacion(contenedor) {
+    // Limpiar el contenido del contenedor
+    contenedor.innerHTML = '';
+
+    // Crear y agregar los elementos para la selección del botón
+    let divNombre = document.createElement('div');
+    divNombre.textContent = 'Seleccionar botón:';
+
+    let selectBotones = document.createElement('select');
+    let defaultOption = document.createElement('option');
+    defaultOption.textContent = 'Seleccione un botón';
+    defaultOption.disabled = true;
+    defaultOption.selected = true;
+    selectBotones.appendChild(defaultOption);
+
+    let botones = document.querySelectorAll('.menu_anchor');
+    botones.forEach((boton, index) => {
+        let option = document.createElement('option');
+        option.value = index;
+        option.textContent = boton.textContent || `Botón ${index + 1}`;
+        selectBotones.appendChild(option);
+    });
+
+    contenedor.appendChild(divNombre);
+    contenedor.appendChild(selectBotones);
+
+    // Crear y agregar el selector de animación
+    let divAnimacion = document.createElement('div');
+    divAnimacion.textContent = 'Seleccionar Animación:';
+
+    let selectAnimacion = document.createElement('select');
+    selectAnimacion.id = 'selectAnimacion';
+    let opcionesAnimacion = ['ninguna', 'zoom', 'girar', 'desvanecer'];
+    opcionesAnimacion.forEach(opcion => {
+        let animOption = document.createElement('option');
+        animOption.value = opcion.toLowerCase();
+        animOption.textContent = opcion.charAt(0).toUpperCase() + opcion.slice(1);
+        selectAnimacion.appendChild(animOption);
+    });
+
+    contenedor.appendChild(divAnimacion);
+    contenedor.appendChild(selectAnimacion);
+
+    // Aplicar animación al botón seleccionado cuando cambian las opciones
+    selectBotones.addEventListener('change', () => {
+        let selectedIndex = selectBotones.value;
+        let selectedBoton = botones[selectedIndex];
+
+        // Añadir evento para cambiar la animación del botón seleccionado
+        selectAnimacion.addEventListener('change', () => {
+            let animacion = selectAnimacion.value;
+
+            // Remover cualquier clase de animación anterior
+            selectedBoton.classList.remove('animacion-zoom', 'animacion-girar', 'animacion-desvanecer');
+
+            // Aplicar la nueva clase de animación si no es 'ninguna'
+            if (animacion !== 'ninguna') {
+                selectedBoton.classList.add(`animacion-${animacion}`);
+            }
+        });
+
+        // Disparar el evento de cambio para aplicar la animación seleccionada
+        selectAnimacion.dispatchEvent(new Event('change'));
+    });
+}
+
+function abrirMenuAnimacion() {
+    // Muestra el menú de animación
+    document.getElementById('MenuAnimacion').style.display = 'block';
+
+    // Llama a la función para mostrar las opciones del menú de animación
+    const contenedor = document.querySelector('#MenuAnimacion .seleccionado__contenedor');
+    mostrarMenuAnimacion(contenedor);
+}
+
+function cerrarMenuAnimacion() {
+    // Oculta el menú de animación
+    document.getElementById('MenuAnimacion').style.display = 'none';
+}
 //Fin Funciones del modificar texto
 
 //FUNCIONES DE "MENU BOTON"

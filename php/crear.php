@@ -197,7 +197,7 @@ BPPJ
                             <div class="btn__style_texto" onclick="abrirMenuTexto()">Posicion texto</div> 
                             <div class="btn__style_texto"  >Viñeta</div>
                             <div class="btn__style_texto"onclick="abrirMenuAnimacion()" >Animacion </div>
-                            <div class="btn__style_texto" >Restablecer cambios</div>  
+                            <div class="btn__style_texto" onclick="restablecerCambios()">Restablecer cambios</div>  
                             
                         </div>
 

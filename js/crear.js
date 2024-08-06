@@ -1718,6 +1718,10 @@ function mostrarMenuAnimacion(contenedor) {
     contenedor.appendChild(divNombre);
     contenedor.appendChild(selectBotones);
 
+    // Contenedor para los elementos adicionales (animación, duración y checkboxes)
+    let elementosAdicionales = document.createElement('div');
+    elementosAdicionales.style.display = 'none';
+
     // Crear y agregar el selector de animación
     let divAnimacion = document.createElement('div');
     divAnimacion.textContent = 'Seleccionar Animación:';
@@ -1732,32 +1736,128 @@ function mostrarMenuAnimacion(contenedor) {
         selectAnimacion.appendChild(animOption);
     });
 
-    contenedor.appendChild(divAnimacion);
-    contenedor.appendChild(selectAnimacion);
+    elementosAdicionales.appendChild(divAnimacion);
+    elementosAdicionales.appendChild(selectAnimacion);
 
-    // Aplicar animación al botón seleccionado cuando cambian las opciones
+    // Crear y agregar el selector de duración de animación
+    let divDuracion = document.createElement('div');
+    divDuracion.textContent = 'Duración (segundos):';
+
+    let inputDuracion = document.createElement('input');
+    inputDuracion.type = 'number';
+    inputDuracion.id = 'selectDuracion';
+    inputDuracion.min = 0.1;
+    inputDuracion.step = 0.1;
+    inputDuracion.value = 0.5;
+
+    elementosAdicionales.appendChild(divDuracion);
+    elementosAdicionales.appendChild(inputDuracion);
+
+    // Crear y agregar los checkboxes para la animación
+    let divOpciones = document.createElement('div');
+    divOpciones.textContent = 'Opciones de Animación:';
+
+    let checkboxCargar = document.createElement('input');
+    checkboxCargar.type = 'checkbox';
+    checkboxCargar.id = 'animacionCargar';
+
+    let labelCargar = document.createElement('label');
+    labelCargar.htmlFor = 'animacionCargar';
+    labelCargar.textContent = 'Aplicar al cargar la página';
+
+    let checkboxHover = document.createElement('input');
+    checkboxHover.type = 'checkbox';
+    checkboxHover.id = 'animacionHover';
+
+    let labelHover = document.createElement('label');
+    labelHover.htmlFor = 'animacionHover';
+    labelHover.textContent = 'Aplicar al pasar el mouse';
+
+    elementosAdicionales.appendChild(divOpciones);
+    elementosAdicionales.appendChild(checkboxCargar);
+    elementosAdicionales.appendChild(labelCargar);
+    elementosAdicionales.appendChild(document.createElement('br'));
+    elementosAdicionales.appendChild(checkboxHover);
+    elementosAdicionales.appendChild(labelHover);
+
+    // Botón para aplicar la animación a un botón seleccionado
+    let aplicarAnimacionBtn = document.createElement('button');
+    aplicarAnimacionBtn.textContent = 'Aplicar Animación al Botón Seleccionado';
+
+    // Botón para aplicar la animación a todos los botones
+    let aplicarAnimacionTodosBtn = document.createElement('button');
+    aplicarAnimacionTodosBtn.textContent = 'Aplicar Animación a Todos los Botones';
+
+    elementosAdicionales.appendChild(aplicarAnimacionBtn);
+    elementosAdicionales.appendChild(aplicarAnimacionTodosBtn);
+
+    contenedor.appendChild(elementosAdicionales);
+
+    // Mostrar opciones de animación y duración cuando se selecciona un botón
     selectBotones.addEventListener('change', () => {
+        elementosAdicionales.style.display = 'block';
+    });
+
+    // Aplicar animación al botón seleccionado al hacer clic en el botón de aplicar
+    aplicarAnimacionBtn.addEventListener('click', () => {
         let selectedIndex = selectBotones.value;
         let selectedBoton = botones[selectedIndex];
+        let animacion = selectAnimacion.value;
+        let duracion = inputDuracion.value;
+        let aplicarCargar = checkboxCargar.checked;
+        let aplicarHover = checkboxHover.checked;
 
-        // Añadir evento para cambiar la animación del botón seleccionado
-        selectAnimacion.addEventListener('change', () => {
-            let animacion = selectAnimacion.value;
+        // Remover cualquier clase de animación anterior
+        selectedBoton.classList.remove('animacion-zoom', 'animacion-girar', 'animacion-desvanecer');
+        selectedBoton.style.animation = '';
 
+        // Aplicar la nueva clase de animación si no es 'ninguna'
+        if (animacion !== 'ninguna') {
+            if (aplicarCargar) {
+                selectedBoton.classList.add(`animacion-${animacion}`);
+                selectedBoton.style.animationDuration = `${duracion}s`;
+            }
+            if (aplicarHover) {
+                selectedBoton.addEventListener('mouseover', () => {
+                    selectedBoton.style.animation = `${animacion} ${duracion}s ease-in-out forwards`;
+                });
+                selectedBoton.addEventListener('mouseout', () => {
+                    selectedBoton.style.animation = '';
+                });
+            }
+        }
+    });
+
+    // Aplicar animación a todos los botones al hacer clic en el botón de aplicar a todos
+    aplicarAnimacionTodosBtn.addEventListener('click', () => {
+        let animacion = selectAnimacion.value;
+        let duracion = inputDuracion.value;
+        let aplicarCargar = checkboxCargar.checked;
+        let aplicarHover = checkboxHover.checked;
+
+        botones.forEach(boton => {
             // Remover cualquier clase de animación anterior
-            selectedBoton.classList.remove('animacion-zoom', 'animacion-girar', 'animacion-desvanecer');
+            boton.classList.remove('animacion-zoom', 'animacion-girar', 'animacion-desvanecer');
+            boton.style.animation = '';
 
             // Aplicar la nueva clase de animación si no es 'ninguna'
             if (animacion !== 'ninguna') {
-                selectedBoton.classList.add(`animacion-${animacion}`);
+                if (aplicarCargar) {
+                    boton.classList.add(`animacion-${animacion}`);
+                    boton.style.animationDuration = `${duracion}s`;
+                }
+                if (aplicarHover) {
+                    boton.addEventListener('mouseover', () => {
+                        boton.style.animation = `${animacion} ${duracion}s ease-in-out forwards`;
+                    });
+                    boton.addEventListener('mouseout', () => {
+                        boton.style.animation = '';
+                    });
+                }
             }
         });
-
-        // Disparar el evento de cambio para aplicar la animación seleccionada
-        selectAnimacion.dispatchEvent(new Event('change'));
     });
 }
-
 function abrirMenuAnimacion() {
     // Muestra el menú de animación
     document.getElementById('MenuAnimacion').style.display = 'block';
@@ -1771,6 +1871,61 @@ function cerrarMenuAnimacion() {
     // Oculta el menú de animación
     document.getElementById('MenuAnimacion').style.display = 'none';
 }
+
+// Variable global para almacenar el estado inicial de los elementos .menu_anchor
+let estadoInicialBotones = [];
+
+// Función para guardar el estado inicial de los elementos .menu_anchor
+function guardarEstadoInicial() {
+    let botones = document.querySelectorAll('.menu_anchor');
+    estadoInicialBotones = Array.from(botones).map(boton => ({
+        elemento: boton,
+        estilo: {
+            fontFamily: boton.style.fontFamily,
+            fontSize: boton.style.fontSize,
+            fontWeight: boton.style.fontWeight,
+            fontStyle: boton.style.fontStyle,
+            textDecoration: boton.style.textDecoration,
+            color: boton.style.color,
+            textAlign: boton.style.textAlign,
+            alignItems: boton.style.alignItems,
+            display: boton.style.display,
+            animation: boton.style.animation
+        }
+    }));
+}
+
+// Función para restablecer los cambios
+function restablecerCambios() {
+    estadoInicialBotones.forEach(estado => {
+        let boton = estado.elemento;
+
+        // Restablecer estilos iniciales
+        boton.style.fontFamily = estado.estilo.fontFamily;
+        boton.style.fontSize = estado.estilo.fontSize;
+        boton.style.fontWeight = estado.estilo.fontWeight;
+        boton.style.fontStyle = estado.estilo.fontStyle;
+        boton.style.textDecoration = estado.estilo.textDecoration;
+        boton.style.color = estado.estilo.color;
+        boton.style.textAlign = estado.estilo.textAlign;
+        boton.style.alignItems = estado.estilo.alignItems;
+        boton.style.display = estado.estilo.display;
+        boton.style.animation = estado.estilo.animation;
+    });
+
+    // Restablecer los valores de los selectores y checkboxes si es necesario
+    document.getElementById('selectAnimacion').value = 'ninguna';
+    document.getElementById('selectDuracion').value = 0.5;
+    document.getElementById('selectTamanio').value = ''; // Ajusta esto según el valor inicial
+    document.getElementById('animacionCargar').checked = false;
+    document.getElementById('animacionHover').checked = false;
+}
+
+// Llamar a guardarEstadoInicial al cargar la página o al iniciar la aplicación
+guardarEstadoInicial();
+
+// Llamar a guardarEstadoInicial al cargar la página o al iniciar la aplicación
+guardarEstadoInicial();
 //Fin Funciones del modificar texto
 
 //FUNCIONES DE "MENU BOTON"

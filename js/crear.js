@@ -1871,61 +1871,176 @@ function cerrarMenuAnimacion() {
     // Oculta el menú de animación
     document.getElementById('MenuAnimacion').style.display = 'none';
 }
-
-// Variable global para almacenar el estado inicial de los elementos .menu_anchor
-let estadoInicialBotones = [];
-
-// Función para guardar el estado inicial de los elementos .menu_anchor
-function guardarEstadoInicial() {
-    let botones = document.querySelectorAll('.menu_anchor');
-    estadoInicialBotones = Array.from(botones).map(boton => ({
-        elemento: boton,
-        estilo: {
-            fontFamily: boton.style.fontFamily,
-            fontSize: boton.style.fontSize,
-            fontWeight: boton.style.fontWeight,
-            fontStyle: boton.style.fontStyle,
-            textDecoration: boton.style.textDecoration,
-            color: boton.style.color,
-            textAlign: boton.style.textAlign,
-            alignItems: boton.style.alignItems,
-            display: boton.style.display,
-            animation: boton.style.animation
-        }
-    }));
+// Función para mostrar el menú de viñetas
+function abrirMenuVinetas() {
+    document.getElementById('MenuVinetas').style.display = 'block';
+    const contenedor = document.querySelector('#MenuVinetas .seleccionado__contenedor');
+    mostrarMenuVinetas(contenedor);
 }
 
-// Función para restablecer los cambios
-function restablecerCambios() {
-    estadoInicialBotones.forEach(estado => {
-        let boton = estado.elemento;
+// Función para cerrar el menú de viñetas
+function cerrarMenuVinetas() {
+    document.getElementById('MenuVinetas').style.display = 'none';
+}
 
-        // Restablecer estilos iniciales
-        boton.style.fontFamily = estado.estilo.fontFamily;
-        boton.style.fontSize = estado.estilo.fontSize;
-        boton.style.fontWeight = estado.estilo.fontWeight;
-        boton.style.fontStyle = estado.estilo.fontStyle;
-        boton.style.textDecoration = estado.estilo.textDecoration;
-        boton.style.color = estado.estilo.color;
-        boton.style.textAlign = estado.estilo.textAlign;
-        boton.style.alignItems = estado.estilo.alignItems;
-        boton.style.display = estado.estilo.display;
-        boton.style.animation = estado.estilo.animation;
+// Función para mostrar el contenido del menú de viñetas
+function mostrarMenuVinetas(contenedor) {
+    // Limpiar el contenido del contenedor
+    contenedor.innerHTML = '';
+
+    // Crear y agregar los elementos para la selección del botón
+    let divNombre = document.createElement('div');
+    divNombre.textContent = 'Seleccionar botón:';
+
+    let selectBotones = document.createElement('select');
+    let defaultOption = document.createElement('option');
+    defaultOption.textContent = 'Seleccione un botón';
+    defaultOption.disabled = true;
+    defaultOption.selected = true;
+    selectBotones.appendChild(defaultOption);
+
+    let botones = document.querySelectorAll('.menu_anchor');
+    botones.forEach((boton, index) => {
+        let option = document.createElement('option');
+        option.value = index;
+        option.textContent = boton.textContent || `Botón ${index + 1}`;
+        selectBotones.appendChild(option);
     });
 
-    // Restablecer los valores de los selectores y checkboxes si es necesario
-    document.getElementById('selectAnimacion').value = 'ninguna';
-    document.getElementById('selectDuracion').value = 0.5;
-    document.getElementById('selectTamanio').value = ''; // Ajusta esto según el valor inicial
-    document.getElementById('animacionCargar').checked = false;
-    document.getElementById('animacionHover').checked = false;
+    contenedor.appendChild(divNombre);
+    contenedor.appendChild(selectBotones);
+
+    // Contenedor para las opciones de viñetas
+    let opcionesVinetasContenedor = document.createElement('div');
+    opcionesVinetasContenedor.style.display = 'none';
+    contenedor.appendChild(opcionesVinetasContenedor);
+
+    // Crear y agregar los elementos para la selección del estilo de viñetas
+    let divVinetas = document.createElement('div');
+    divVinetas.textContent = 'Seleccionar estilo de viñetas:';
+
+    let selectVinetas = document.createElement('select');
+    let defaultVinetasOption = document.createElement('option');
+    defaultVinetasOption.textContent = 'Seleccione un estilo de viñetas';
+    defaultVinetasOption.disabled = true;
+    defaultVinetasOption.selected = true;
+    selectVinetas.appendChild(defaultVinetasOption);
+
+    // Diferentes estilos de viñetas (similares a los de Word)
+    let estilosVinetas = ['•', '◦', '▪', '▫', '✓', '✔', '❖', '✿'];
+    estilosVinetas.forEach(estilo => {
+        let option = document.createElement('option');
+        option.value = estilo;
+        option.textContent = estilo;
+        selectVinetas.appendChild(option);
+    });
+
+    opcionesVinetasContenedor.appendChild(divVinetas);
+    opcionesVinetasContenedor.appendChild(selectVinetas);
+
+    // Botón para agregar viñetas al botón seleccionado
+    let agregarVinetasBtn = document.createElement('button');
+    agregarVinetasBtn.textContent = 'Agregar Viñetas';
+    opcionesVinetasContenedor.appendChild(agregarVinetasBtn);
+
+    // Botón para quitar viñetas del botón seleccionado
+    let quitarVinetasBtn = document.createElement('button');
+    quitarVinetasBtn.textContent = 'Quitar Viñetas';
+    opcionesVinetasContenedor.appendChild(quitarVinetasBtn);
+
+    // Lógica para agregar viñetas al botón seleccionado
+    agregarVinetasBtn.addEventListener('click', () => {
+        let botonSeleccionadoIndex = selectBotones.value;
+        let estiloVinetaSeleccionado = selectVinetas.value;
+        if (botonSeleccionadoIndex !== '' && estiloVinetaSeleccionado !== '') {
+            let botonSeleccionado = botones[botonSeleccionadoIndex];
+            if (!botonSeleccionado.textContent.trim().startsWith(estiloVinetaSeleccionado)) {
+                botonSeleccionado.textContent = estiloVinetaSeleccionado + ' ' + botonSeleccionado.textContent.trim();
+            }
+        }
+    });
+
+    // Lógica para quitar viñetas del botón seleccionado
+    quitarVinetasBtn.addEventListener('click', () => {
+        let botonSeleccionadoIndex = selectBotones.value;
+        if (botonSeleccionadoIndex !== '') {
+            let botonSeleccionado = botones[botonSeleccionadoIndex];
+            let textoBoton = botonSeleccionado.textContent.trim();
+            let estiloVineta = selectVinetas.value;
+            if (textoBoton.startsWith(estiloVineta)) {
+                botonSeleccionado.textContent = textoBoton.slice(estiloVineta.length).trim();
+            }
+        }
+    });
+
+    // Mostrar opciones de viñetas al seleccionar un botón
+    selectBotones.addEventListener('change', () => {
+        opcionesVinetasContenedor.style.display = 'block';
+    });
 }
+function restablecerCambios() {
+    // Restaurar el tamaño de texto
+    let selectTamanio = document.getElementById('selectTamanio');
+    let textos = document.getElementsByClassName('menu_anchor');
+    let valorInicial = selectTamanio.value + 'px';
+    Array.from(textos).forEach(texto => {
+        texto.style.fontSize = valorInicial;
+    });
 
-// Llamar a guardarEstadoInicial al cargar la página o al iniciar la aplicación
-guardarEstadoInicial();
+    // Restaurar la fuente
+    let selectFuentes = document.getElementById('selectFuentes');
+    let fuenteInicial = selectFuentes.value;
+    Array.from(textos).forEach(texto => {
+        texto.style.fontFamily = fuenteInicial;
+    });
 
-// Llamar a guardarEstadoInicial al cargar la página o al iniciar la aplicación
-guardarEstadoInicial();
+    // Restaurar el color del texto
+    let botones = document.querySelectorAll('.menu_anchor');
+    botones.forEach(boton => {
+        boton.style.color = ''; // Restaurar el color por defecto
+    });
+
+    // Restaurar negrita
+    Array.from(textos).forEach(texto => {
+        texto.style.fontWeight = ''; // Restaurar el peso por defecto
+    });
+
+    // Restaurar cursiva
+    Array.from(textos).forEach(texto => {
+        texto.style.fontStyle = ''; // Restaurar el estilo por defecto
+    });
+
+    // Restaurar subrayado
+    Array.from(textos).forEach(texto => {
+        texto.style.textDecoration = ''; // Restaurar la decoración por defecto
+    });
+
+    // Restaurar alineación del texto
+    Array.from(textos).forEach(texto => {
+        texto.style.textAlign = ''; // Restaurar la alineación por defecto
+        texto.style.alignItems = ''; // Restaurar la alineación vertical por defecto
+        texto.style.display = ''; // Restaurar la propiedad display por defecto
+    });
+
+    // Restaurar viñetas
+    botones.forEach(boton => {
+        let texto = boton.textContent.trim();
+        let estilosVinetas = ['•', '◦', '▪', '▫', '✓', '✔', '❖', '✿'];
+        estilosVinetas.forEach(estilo => {
+            if (texto.startsWith(estilo)) {
+                boton.textContent = texto.slice(estilo.length).trim();
+            }
+        });
+    });
+
+    // Restaurar animaciones
+    Array.from(textos).forEach(texto => {
+        texto.style.animation = ''; // Restaurar animaciones por defecto
+        texto.style.transition = ''; // Restaurar transiciones por defecto
+    });
+
+    
+}
 //Fin Funciones del modificar texto
 
 //FUNCIONES DE "MENU BOTON"

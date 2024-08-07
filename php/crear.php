@@ -195,11 +195,29 @@ BPPJ
                         <div class="container-btn-modificar_texto">
                             <div class="btn__style_texto"  onclick="mostrarMenuCambiarColorTexto()">Cambiar color texto</div>
                             <div class="btn__style_texto" onclick="abrirMenuTexto()">Posicion texto</div> 
-                            <div class="btn__style_texto"  >Viñeta</div>
+                            <div class="btn__style_texto"  onclick="abrirMenuVinetas()">Viñeta</div>
                             <div class="btn__style_texto"onclick="abrirMenuAnimacion()" >Animacion </div>
                             <div class="btn__style_texto" onclick="restablecerCambios()">Restablecer cambios</div>  
                             
                         </div>
+
+
+                        <div id="MenuVinetas" class="MenuSeleccionado" style="display: none;">
+                            <div class="seleccionado">
+                                <div class="seleccionado__container-title">
+                                    <div class="seleccionado__titulo">Seleccionar Viñetas</div>
+                                    <div id="MenuVinetas__cerrar" class="seleccionado__cerrar" onclick="cerrarMenuVinetas()">X</div>
+                                </div>
+                                <div id="MenuVinetas__contenido" class="seleccionado__contenido">
+                                    <div class="seleccionado__contenedor"></div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
 
 
                         <div id="MenuAnimacion" class="MenuSeleccionado" style="display: none;">

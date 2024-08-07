@@ -534,6 +534,7 @@ input[type=number]::-webkit-inner-spin-button {
     background-color: blue;  /* Color de fondo azul para los elementos */
     box-sizing: border-box; /* Incluye padding y border en el tamaño total */
     overflow: hidden; /* Oculta el texto que excede el tamaño del elemento */
+    white-space: nowrap; /* Evita el salto de línea */
 }
 
 .ul-sub {
@@ -802,6 +803,18 @@ input[type="submit"]:hover {
     margin: 30px;
 }
  
+
+.con-vinetas {
+    list-style: none; /* Elimina el estilo de lista predeterminado */
+    padding: 0; /* Elimina el padding */
+    margin: 0; /* Elimina el margen */
+    display: flex; /* Asegura que el contenido se mantenga en una línea */
+    align-items: center; /* Centra el contenido verticalmente */
+}
+
+.con-vinetas li {
+    display: inline; /* Mantiene el contenido en línea */
+}
 
 /* Define la animación de escalado */
 @keyframes scaleAnimation {

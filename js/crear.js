@@ -19,15 +19,18 @@ BPPJ
 // Data de las columnas y subcolumnas
 let menuData = [];
 
+// Lista inicial de fuentes incluyendo las de Word
 let Fuentes = [
-    {"id" : 1 , "nombre" : "serif"},
-    {"id" : 2 , "nombre" : "sans-serif"},
-    {"id" : 3 , "nombre" : "monospace"},
-    {"id" : 4 , "nombre" : "cursive"},
-    {"id" : 5 , "nombre" : "fantasy"},
-    {"id" : 6 , "nombre" : "system-ui"},
-    {"id" : 7 , "nombre" : "times-new-roman"}
-
+    { "id": 1, "nombre": "serif" },
+    { "id": 2, "nombre": "sans-serif" },
+    { "id": 3, "nombre": "monospace" },
+    { "id": 4, "nombre": "cursive" },
+    { "id": 5, "nombre": "fantasy" },
+    { "id": 6, "nombre": "system-ui" },
+    { "id": 7, "nombre": "Arial" },        // Fuentes de Word
+    { "id": 8, "nombre": "Calibri" },
+    { "id": 9, "nombre": "Times New Roman" }
+    // Añadir más fuentes según sea necesario
 ];
 
 
@@ -168,6 +171,38 @@ document.addEventListener('DOMContentLoaded', () => {
         option.textContent = fuente.nombre;  // Establece el texto que se muestra en la opción
         selectFuentes.appendChild(option);  // Añade la opción al select
     });
+
+    document.getElementById('cargarFuenteForm').addEventListener('submit', function(event) {
+        event.preventDefault();  // Evitar el envío del formulario y la navegación de página
+    
+        let formData = new FormData(this);
+    
+        fetch('php/cargar_fuente.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(result => {
+            if (result.error) {
+                console.error('Error:', result.error);
+            } else {
+                console.log('Nuevas fuentes:', result.newFonts);
+                // Actualizar el listado de fuentes
+                let selectFuentes = document.getElementById('selectFuentes');
+                result.newFonts.forEach(fuente => {
+                    let option = document.createElement('option');
+                    option.value = fuente;
+                    option.textContent = fuente;
+                    selectFuentes.appendChild(option);
+                });
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    });
+    // Inicializar
+    cargarFuentes();
     CambiarFuente();
     // Agrega un evento de tecla presionada al contenedor con la clase 'input_names-container'
     document.querySelector('.input_names-container').addEventListener('keydown', function (event) {
@@ -1383,23 +1418,66 @@ function preguntarRedireccionamiento() {
 
 //Funciones del modificar texto
 
-function CambiarFuente(){
-    
-    // Agregar un event listener al <select> para escuchar cambios
+function cargarFuentes() {
+    let selectFuentes = document.getElementById('selectFuentes');
+    selectFuentes.innerHTML = '<option selected>Seleccionar</option>';  // Limpiar y reestablecer la opción predeterminada
+
+    Fuentes.forEach(fuente => {
+        let option = document.createElement('option');
+        option.value = fuente.nombre;  // Establece el valor de la opción
+        option.textContent = fuente.nombre;  // Establece el texto que se muestra en la opción
+        selectFuentes.appendChild(option);  // Añade la opción al select
+    });
+}
+
+function CambiarFuente() {
+    let selectFuentes = document.getElementById('selectFuentes');
+
     selectFuentes.addEventListener('change', function() {
-        // Obtener el valor de la opción seleccionada en lugar de textContent
         let content = this.value;
-
-        // Obtener todos los elementos con la clase 'menu_anchor'
         let textos = document.getElementsByClassName('menu_anchor');
-
-        // Iterar sobre todos los elementos con la clase 'menu_anchor' y cambiar su font-family
         Array.from(textos).forEach(texto => {
             texto.style.fontFamily = content;
         });
     });
+
     selectFuentes.dispatchEvent(new Event('change'));
 }
+
+function agregarFuente(nombreFuente, fuenteUrl) {
+    // Verificar si la fuente ya existe
+    if (!Fuentes.some(fuente => fuente.nombre === nombreFuente)) {
+        let id = Fuentes.length ? Fuentes[Fuentes.length - 1].id + 1 : 1;
+        Fuentes.push({ id, nombre: nombreFuente });
+
+        // Agregar la fuente al navegador
+        const style = document.createElement('style');
+        style.textContent = `
+            @font-face {
+                font-family: '${nombreFuente}';
+                src: url('${fuenteUrl}');
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Actualizar el listado de fuentes sin recargar la página
+        let selectFuentes = document.getElementById('selectFuentes');
+        let option = document.createElement('option');
+        option.value = nombreFuente;
+        option.textContent = nombreFuente;
+        selectFuentes.appendChild(option);
+    }
+}
+
+
+
+
+
+
+
+
+
+
 
 function CambiarTamanioTexto() {
     let selectTamanio = document.getElementById('selectTamanio');
@@ -1927,7 +2005,7 @@ function mostrarMenuVinetas(contenedor) {
     selectVinetas.appendChild(defaultVinetasOption);
 
     // Diferentes estilos de viñetas (similares a los de Word)
-    let estilosVinetas = ['•', '◦', '▪', '▫', '✓', '✔', '❖', '✿'];
+    let estilosVinetas = ['•', '◦', '▪', '▫', '✓', '✔', '❖', '➢'];
     estilosVinetas.forEach(estilo => {
         let option = document.createElement('option');
         option.value = estilo;

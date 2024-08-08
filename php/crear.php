@@ -165,6 +165,14 @@ BPPJ
                             </select>
                         </div>
 
+                        <div class="cargarFuenteForm">
+                            <form id="cargarFuenteForm">
+                                <label for="archivoFuente">Agregar nueva fuente</label>
+                                <input type="file" id="archivoFuente" name="fileUpload[]" accept=".ttf,.otf" />
+                                <button type="submit">Agregar Fuente</button>
+                            </form>
+                        </div>
+
                         <div class="contenedor__tamanio">
                             <div class="tamanio__titulo">Tamaño de Letra</div>
                             <div class="tamanio__select">

@@ -163,20 +163,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    let selectFuentes = document.getElementById('selectFuentes');
 
-    Fuentes.forEach(fuente => {
-        let option = document.createElement('option');
-        option.value = fuente.nombre;  // Establece el valor de la opción
-        option.textContent = fuente.nombre;  // Establece el texto que se muestra en la opción
-        selectFuentes.appendChild(option);  // Añade la opción al select
-    });
 
+    // Función para manejar el envío del formulario y agregar nuevas fuentes
     document.getElementById('cargarFuenteForm').addEventListener('submit', function(event) {
         event.preventDefault();  // Evitar el envío del formulario y la navegación de página
-    
+        
         let formData = new FormData(this);
-    
+
         fetch('php/cargar_fuente.php', {
             method: 'POST',
             body: formData
@@ -187,23 +181,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.error('Error:', result.error);
             } else {
                 console.log('Nuevas fuentes:', result.newFonts);
-                // Actualizar el listado de fuentes
-                let selectFuentes = document.getElementById('selectFuentes');
-                result.newFonts.forEach(fuente => {
-                    let option = document.createElement('option');
-                    option.value = fuente;
-                    option.textContent = fuente;
-                    selectFuentes.appendChild(option);
-                });
+                // Actualizar el listado de fuentes en vivo
+                cargarFuentes();
             }
         })
         .catch(error => {
             console.error('Error:', error);
         });
     });
-    // Inicializar
+
+        
+
     cargarFuentes();
     CambiarFuente();
+    actualizarFuentes();
+
+    
+    
     // Agrega un evento de tecla presionada al contenedor con la clase 'input_names-container'
     document.querySelector('.input_names-container').addEventListener('keydown', function (event) {
         // Verifica si la tecla presionada es 'Enter'
@@ -1417,19 +1411,24 @@ function preguntarRedireccionamiento() {
 }
 
 //Funciones del modificar texto
-
 function cargarFuentes() {
-    let selectFuentes = document.getElementById('selectFuentes');
-    selectFuentes.innerHTML = '<option selected>Seleccionar</option>';  // Limpiar y reestablecer la opción predeterminada
+    fetch('fuentes/fonts.json')
+        .then(response => response.json())
+        .then(existingFonts => {
+            let selectFuentes = document.getElementById('selectFuentes');
+            selectFuentes.innerHTML = '<option selected>Seleccionar</option>';  // Limpiar y reestablecer la opción predeterminada
 
-    Fuentes.forEach(fuente => {
-        let option = document.createElement('option');
-        option.value = fuente.nombre;  // Establece el valor de la opción
-        option.textContent = fuente.nombre;  // Establece el texto que se muestra en la opción
-        selectFuentes.appendChild(option);  // Añade la opción al select
-    });
+            existingFonts.forEach(fuente => {
+                let option = document.createElement('option');
+                option.value = fuente;
+                option.textContent = fuente;
+                selectFuentes.appendChild(option);
+            });
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
 }
-
 function CambiarFuente() {
     let selectFuentes = document.getElementById('selectFuentes');
 
@@ -1446,7 +1445,8 @@ function CambiarFuente() {
 
 function agregarFuente(nombreFuente, fuenteUrl) {
     // Verificar si la fuente ya existe
-    if (!Fuentes.some(fuente => fuente.nombre === nombreFuente)) {
+    let existingFonts = Array.from(document.querySelectorAll('#selectFuentes option')).map(option => option.value);
+    if (!existingFonts.includes(nombreFuente)) {
         let id = Fuentes.length ? Fuentes[Fuentes.length - 1].id + 1 : 1;
         Fuentes.push({ id, nombre: nombreFuente });
 
@@ -1468,7 +1468,17 @@ function agregarFuente(nombreFuente, fuenteUrl) {
         selectFuentes.appendChild(option);
     }
 }
-
+function actualizarFuentes() {
+    fetch('php/actualizar_fonts.php')
+        .then(response => response.text())
+        .then(result => {
+            console.log(result); // Mensaje de éxito de PHP
+            cargarFuentes(); // Cargar la lista de fuentes
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+}
 
 
 

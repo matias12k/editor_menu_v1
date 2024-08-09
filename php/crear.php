@@ -168,7 +168,7 @@ BPPJ
                         <div class="cargarFuenteForm">
                             <form id="cargarFuenteForm">
                                 <label for="archivoFuente">Agregar nueva fuente</label>
-                                <input type="file" id="archivoFuente" name="fileUpload[]" accept=".ttf,.otf" />
+                                <input type="file" id="archivoFuente" action="php/cargar_fuente.php" name="fileUpload[]" accept=".ttf,.otf" />
                                 <button type="submit">Agregar Fuente</button>
                             </form>
                         </div>

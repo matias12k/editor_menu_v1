@@ -60,3 +60,14 @@ CREATE TABLE IF NOT EXISTS `subcolumnas` (
   PRIMARY KEY (`ID`),
   FOREIGN KEY (`idColumna`) REFERENCES `columnas`(`ID`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=1 ;
+
+
+-- ------------------------------------------------- --
+-- - ESTRUCTURA DE TABLA PARA LA TABLA `fuentes` --
+-- ------------------------------------------------- --
+CREATE TABLE IF NOT EXISTS `fuentes` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR(25) NOT NULL,  
+  PRIMARY KEY (`id`),  
+  UNIQUE KEY `nombre` (`nombre`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

@@ -168,9 +168,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Función para manejar el envío del formulario y agregar nuevas fuentes
     document.getElementById('cargarFuenteForm').addEventListener('submit', function(event) {
         event.preventDefault();  // Evitar el envío del formulario y la navegación de página
-        
+    
         let formData = new FormData(this);
-
+    
         fetch('php/cargar_fuente.php', {
             method: 'POST',
             body: formData
@@ -181,14 +181,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.error('Error:', result.error);
             } else {
                 console.log('Nuevas fuentes:', result.newFonts);
-                // Actualizar el listado de fuentes en vivo
-                cargarFuentes();
+                let selectFuentes = document.getElementById('selectFuentes');
+                result.newFonts.forEach(fuente => {
+                    let option = document.createElement('option');
+                    option.value = fuente;
+                    option.textContent = fuente;
+                    selectFuentes.appendChild(option);
+                });
             }
         })
         .catch(error => {
             console.error('Error:', error);
         });
     });
+    
 
         
 
@@ -1411,38 +1417,68 @@ function preguntarRedireccionamiento() {
 }
 
 //Funciones del modificar texto
+// Función para cargar fuentes desde la base de datos
+// Función para cargar las fuentes desde la base de datos
 function cargarFuentes() {
-    fetch('fuentes/fonts.json')
-        .then(response => response.json())
-        .then(existingFonts => {
-            let selectFuentes = document.getElementById('selectFuentes');
-            selectFuentes.innerHTML = '<option selected>Seleccionar</option>';  // Limpiar y reestablecer la opción predeterminada
+    fetch('php/listar_fuentes.php')
+    .then(response => response.json())
+    .then(fuentes => {
+        let selectFuentes = document.getElementById('selectFuentes');
+        selectFuentes.innerHTML = '<option selected>Seleccionar</option>';  // Limpiar y reestablecer la opción predeterminada
 
-            existingFonts.forEach(fuente => {
-                let option = document.createElement('option');
-                option.value = fuente;
-                option.textContent = fuente;
-                selectFuentes.appendChild(option);
-            });
-        })
-        .catch(error => {
-            console.error('Error:', error);
+        fuentes.forEach(fuente => {
+            let option = document.createElement('option');
+            option.value = fuente;
+            option.textContent = fuente;
+            selectFuentes.appendChild(option);
         });
+    })
+    .catch(error => {
+        console.error('Error al cargar las fuentes:', error);
+    });
 }
+
 function CambiarFuente() {
     let selectFuentes = document.getElementById('selectFuentes');
 
     selectFuentes.addEventListener('change', function() {
-        let content = this.value;
+        let selectedFont = this.value;
         let textos = document.getElementsByClassName('menu_anchor');
+        
+        // Cambiar la fuente en los textos con la clase 'menu_anchor'
         Array.from(textos).forEach(texto => {
-            texto.style.fontFamily = content;
+            texto.style.fontFamily = selectedFont;
         });
+
+        // Guardar la fuente seleccionada en la base de datos
+        guardarFuenteSeleccionada(selectedFont);
     });
 
+    // Disparar el evento 'change' para aplicar la fuente seleccionada al cargar la página
     selectFuentes.dispatchEvent(new Event('change'));
 }
 
+
+function guardarFuenteSeleccionada(fuente) {
+    fetch('php/guardar_fuente.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ fuente: fuente })
+    })
+    .then(response => response.json())
+    .then(result => {
+        if (result.success) {
+            console.log('Fuente guardada con éxito:', fuente);
+        } else {
+            console.error('Error al guardar la fuente:', result.error);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
 function agregarFuente(nombreFuente, fuenteUrl) {
     // Verificar si la fuente ya existe
     let existingFonts = Array.from(document.querySelectorAll('#selectFuentes option')).map(option => option.value);

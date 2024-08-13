@@ -28,8 +28,8 @@ BPPJ
 <?php
     // Cargar los archivos CSS y JS específicos para esta página
     $sweet_alert = "js/sweetAlert.js";
-    $css_file = "css/crear.css";
-    $js_file = "js/crear.js";
+    $css_file = "css/crear/crear.css";
+    $js_file = "js/crear/crear.js";
 ?>
 
 <!DOCTYPE html>
@@ -43,6 +43,12 @@ BPPJ
     <link rel="stylesheet" href="<?php echo $css_file; ?>">
     <!-- Se agregan dinamicamente los scripts de js -->
     <script src="<?php echo $js_file; ?>"></script>
+
+
+    
+
+
+
 </head>
 <body>
     

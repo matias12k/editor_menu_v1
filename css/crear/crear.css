@@ -22,6 +22,8 @@ main{
     gap: 2%;                                    /* Separación entre contenidos */
 }
 
+
+
 /* Contenedor del input del numero de columnas */
 .input_columns-container {
     width: 100%;  /* Establece que el contenedor ocupe el 100% del ancho disponible */

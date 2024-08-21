@@ -19,20 +19,19 @@ BPPJ
     // Ajusta la ruta del archivo según el valor de $page
     switch ($page) {
         case 'prediseñado':
-            $page = 'php/prediseñado/prediseñado.php';
+            $page = '../prediseñado/prediseñado.php';
             break;
         case 'crear':
-            $page = 'php/crear/crear.php';
+            $page = '../crear/crear.php';
             break;
         case 'modificar':
-            $page = 'php/modificar/modificar.php';
+            $page = '../modificar/modificar.php';
             break;
         case 'eliminar':
-            $page = 'php/eliminar/eliminar.php';
+            $page = '../eliminar/eliminar.php';
             break;
         default:
-            // Puedes manejar un caso por defecto, como redirigir a una página de error si $page no coincide con ninguna opción
-            $page = 'php/error.php';
+            $page = '../prediseñado/prediseñado.php';
             break;
     }
 ?>
@@ -42,7 +41,7 @@ BPPJ
     <meta charset="UTF-8"> <!-- Define la codificación de caracteres para el documento -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Configura la vista para dispositivos móviles -->
     <title>Menú</title> <!-- Título de la página -->
-    <link rel="stylesheet" href="css/menu/menu.css"> <!-- Enlace al archivo CSS principal -->
+    <link rel="stylesheet" href="../../css/menu/menu.css"> <!-- Enlace al archivo CSS principal -->
     <!-- Enlace al archivo CSS dinámico, definido por la variable $css_file -->
     <link rel="stylesheet" href="<?php echo $css_file; ?>"> 
     <!-- Enlace al archivo JavaScript dinámico, definido por la variable $js_file -->

@@ -26,8 +26,8 @@ BPPJ
 
 <?php
     // Cargar los archivos CSS y JS específicos para esta página
-    $css_file = "css/eliminar.css";
-    $js_file = "js/eliminar.js";
+    $css_file = "../../css/eliminar/eliminar.css";
+    $js_file = "../../js/eliminar/eliminar.js";
 
 ?>
 <!DOCTYPE html>

@@ -11,7 +11,7 @@ if ($mysqli->connect_error) {
 }
 
 // Directorio de destino para las fuentes
-$targetDir = __DIR__ . '/../fuentes/';
+$targetDir = realpath(__DIR__ . '/../fuentes/') . '/'; // Ajustado para estar en el nivel superior
 
 // Tipos de archivo permitidos
 $allowedExtensions = ['ttf', 'otf', 'pfb', 'pfm', 'woff', 'woff2', 'eot', 'svg', 'bdf', 'fnt', 'fon', 'pcf'];
@@ -40,12 +40,29 @@ foreach ($files as $file) {
     $fontName = pathinfo($file, PATHINFO_FILENAME);
 
     if (in_array(strtolower($fileType), $allowedExtensions) && !in_array($fontName, $existingFonts)) {
-        $stmt = $mysqli->prepare("INSERT INTO fuentes (nombre) VALUES (?)");
-        $stmt->bind_param("s", $fontName);
-        $stmt->execute();
-        $stmt->close();
+        if ($stmt = $mysqli->prepare("INSERT INTO fuentes (nombre) VALUES (?)")) {
+            $stmt->bind_param("s", $fontName);
+            $stmt->execute();
+            $stmt->close();
+        } else {
+            die('Error al preparar la consulta: ' . $mysqli->error);
+        }
+    }
+}
+
+// Obtener la lista completa de fuentes desde la base de datos
+$query = "SELECT nombre FROM fuentes";
+$result = $mysqli->query($query);
+
+$fuentes = [];
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $fuentes[] = $row['nombre'];
     }
 }
 
 $mysqli->close();
-echo 'Las fuentes existentes han sido insertadas en la base de datos.';
+
+// Devolver la lista de fuentes en formato JSON
+header('Content-Type: application/json');
+echo json_encode($fuentes);

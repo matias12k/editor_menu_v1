@@ -11,7 +11,7 @@ if ($mysqli->connect_error) {
 }
 
 // Directorio de destino para las fuentes
-$targetDir = __DIR__ . '/../fuentes/';
+$targetDir = __DIR__ . '../../fuentes/';
 
 // Tipos de archivo permitidos
 $allowedExtensions = ['ttf', 'otf', 'pfb', 'pfm', 'woff', 'woff2', 'eot', 'svg', 'bdf', 'fnt', 'fon', 'pcf'];
@@ -47,19 +47,5 @@ foreach ($files as $file) {
     }
 }
 
-// Obtener la lista completa de fuentes desde la base de datos
-$query = "SELECT nombre FROM fuentes";
-$result = $mysqli->query($query);
-
-$fuentes = [];
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        $fuentes[] = $row['nombre'];
-    }
-}
-
 $mysqli->close();
-
-// Devolver la lista de fuentes en formato JSON
-header('Content-Type: application/json');
-echo json_encode($fuentes);
+echo 'Las fuentes existentes han sido insertadas en la base de datos.';

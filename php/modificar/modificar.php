@@ -27,8 +27,8 @@ BPPJ
 
 <?php
     // Cargar los archivos CSS y JS específicos para esta página
-    $css_file = "css/modificar.css";
-    $js_file = "js/modificar.js";
+    $css_file = "../../css/modificar/modificar.css";
+    $js_file = "../../js/modificar/modificar.js";
 ?>
 
 <!DOCTYPE html>

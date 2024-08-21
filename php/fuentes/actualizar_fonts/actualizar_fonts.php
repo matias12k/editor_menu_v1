@@ -11,7 +11,7 @@ if ($mysqli->connect_error) {
 }
 
 // Directorio de destino para las fuentes
-$targetDir = __DIR__ . '/../fuentes/';
+$targetDir = __DIR__ . '../../fuentes/';
 
 // Tipos de archivo permitidos
 $allowedExtensions = ['ttf', 'otf', 'pfb', 'pfm', 'woff', 'woff2', 'eot', 'svg', 'bdf', 'fnt', 'fon', 'pcf'];

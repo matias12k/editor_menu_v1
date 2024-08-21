@@ -25,8 +25,8 @@ BPPJ
 
 <?php
     // Cargar los archivos CSS y JS específicos para esta página
-    $css_file = "css/prediseñado.css";
-    $js_file = "js/prediseñado.js";
+    $css_file = "../../css/prediseñado/prediseñado.css";
+    $js_file = "../../js/prediseñado/prediseñado.js";
 ?>
 
 <!DOCTYPE html>

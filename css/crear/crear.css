@@ -266,6 +266,8 @@ input[type=number]::-webkit-inner-spin-button {
     display: none;
 }
  
+
+
 .estilos__titulo{
     display: flex;                  /* Establece el elemento como un contenedor flex */
     order: 0;                      /* Define el orden del elemento en el contenedor flex, aquí es el primer elemento */
@@ -295,9 +297,17 @@ input[type=number]::-webkit-inner-spin-button {
     justify-content: center;        /* Centra el contenido horizontalmente dentro del contenedor */
 }
  
-.tamanio__select,
+
 .fuentes__select{
     width: 300px;
+    height: 30px;
+    margin-left: 20px;
+    font-size: 20px;
+    text-align: center;
+}
+
+.tamanio__select{
+    
     height: 30px;
     margin-left: 20px;
     font-size: 20px;
@@ -377,7 +387,7 @@ input[type=number]::-webkit-inner-spin-button {
     border: 1px solid #ccc; /* Opcional: Para un borde sutil */
     background-color: #f5f5f5; /* Opcional: Color de fondo */
     cursor: pointer; /* Cambia el cursor a un puntero para indicar que es clickeable */
-}
+} 
 @media (max-width: 820px) {
     .container {
         display: flex;  /* Hace que los elementos dentro del contenedor se distribuyan en línea */
@@ -600,7 +610,7 @@ input[type=number]::-webkit-inner-spin-button {
  
  .container-btn-modificar_texto {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     justify-content: space-between;
     margin: 30px 20px 0px 20px;
  }
@@ -631,6 +641,7 @@ input[type=number]::-webkit-inner-spin-button {
     justify-content: center;
     align-items: center;
     text-align: center;
+    margin: 30px 0px 0px 20px;
  }
  
  /* Estilo al pasar el ratón sobre los botones de modificación */

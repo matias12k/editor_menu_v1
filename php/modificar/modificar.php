@@ -216,6 +216,7 @@ BPPJ
                     <div id="btn-height" class="btn__style">Alto Bóton</div>
                     <div id="btn-borde-style" class="btn__style">Estilo Borde Bóton</div>
                     <div id="btn-border-color" class="btn__style">Color Borde Bóton</div>
+                    <div class="btn__style_texto" onclick="showMenu('SepararContenedores')">Separador de botones</div>
                     <div class="btn__style"></div>    
                 </div>
                 <div id="MenuSeleccionado" class="MenuSeleccionado">
@@ -266,56 +267,7 @@ BPPJ
 
 
 
-            <div id="estilos" class="estilos">
-                <div class="estilos__titulo">Estilos Generales</div>
-                    
-                <div class="estilos__contenedor1">
-                    <div class="contenedor__fuentes">
-                        <div class="fuentes__titulo">Estilo Fuentes</div>
-                        <div class="fuentes__select">
-                            <label for="">Fuentes</label>
-                            <select id="selectFuentes">
-                                <option select>Seleccionar</option>
-                            </select>
-                        </div>
-                        <div class="contenedor__tamanio">
-                            <div class="tamanio__titulo">Tamaño de Letra</div>
-                            <div class="tamanio__select">
-                                
-                                <select id="selectTamanio">
-                                    <option value="12">10 </option>
-                                    <option value="14">11 </option>
-                                    <option value="16" selected>12 </option>
-                                    <option value="18">13</option>
-                                    <option value="20">14</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="contenedor__letras">
-                        <div for="" class="letras__titulo">Estilos Letras</div>
-                        <div class="letras__inputs">
-                            <div class="inputs__xd">
-                                <label for="" class="input__estilo">Negrita:</label>
-                                <input type="checkbox">                                
-                            </div>
-                                
-                            <div class="inputs__xd">
-                                <label for="" class="input__estilo">Cursiva:</label>
-                                <input type="checkbox">                                
-                            </div>
-                                
-                            <div class="inputs__xd">
-                                <label for="" class="input__estilo">Subrayar:</label>
-                                <input type="checkbox">                                
-                            </div>
-                        </div>
-                        <button id="cerrarMenu">Cerrar</button>    
-                    </div>
-                </div>
-                
-            </div> 
+            
 
             <div class="container-btn">
                 <!--button onClick="getData()">GetData</button-->

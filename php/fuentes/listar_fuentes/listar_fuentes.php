@@ -11,7 +11,7 @@ if ($mysqli->connect_error) {
 }
 
 // Directorio de destino para las fuentes
-$targetDir = realpath(__DIR__ . '/../fuentes/') . '/'; // Ajustado para estar en el nivel superior
+$targetDir = realpath(__DIR__ . '/../fuentes') . '/'; // Ajustado para estar en el nivel superior
 
 // Tipos de archivo permitidos
 $allowedExtensions = ['ttf', 'otf', 'pfb', 'pfm', 'woff', 'woff2', 'eot', 'svg', 'bdf', 'fnt', 'fon', 'pcf'];

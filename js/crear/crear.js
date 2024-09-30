@@ -75,6 +75,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     var tempDiv = document.createElement('div');
                     tempDiv.innerHTML = data;
 
+                    // Imprimir el contenido HTML cargado para depuración
+                    console.log('Contenido HTML cargado:', tempDiv.innerHTML);
+
                     // Obtener el div con ID 'estilos' del contenido cargado
                     var estilosDiv = tempDiv.querySelector('#estilos');
                     
@@ -101,6 +104,14 @@ document.addEventListener('DOMContentLoaded', function() {
                         } else {
                             // Mensaje de error si el elemento selectTamanio no se encuentra
                             console.error('El elemento selectTamanio no se encuentra en el DOM');
+                        }
+
+                        // Llamar a la función para cargar las fuentes si el selectFuentes está presente
+                        var selectFuentes = estilos.querySelector('#selectFuentes');
+                        if (selectFuentes) {
+                            cargarFuentes(); // Asegúrate de que esta función esté definida en tu archivo JS
+                        } else {
+                            console.error('El elemento selectFuentes no se encuentra en el DOM');
                         }
                     } else {
                         // Mensaje de error si el div con ID 'estilos' no se encuentra en la respuesta
@@ -165,19 +176,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // Se añade un evento que se ejecuta cuando el contenido HTML del documento ha sido completamente cargado y parseado
 document.addEventListener('DOMContentLoaded', () => {
 
-    
 
-
-
-    
-    
-
-        
-
-    
-
-    
-    
     // Agrega un evento de tecla presionada al contenedor con la clase 'input_names-container'
     document.querySelector('.input_names-container').addEventListener('keydown', function (event) {
         // Verifica si la tecla presionada es 'Enter'
@@ -1394,7 +1393,9 @@ function preguntarRedireccionamiento() {
 //FUNCIONES DE "MENU BOTON"
 
 function SepararContenedores(contenedor) {
+
     const tituloSeleccionado = document.querySelector('.seleccionado_titulo');
+
     let seleccionado__contenedor = contenedor;
 
     // Limpiar el contenedor
@@ -1550,26 +1551,7 @@ function SepararContenedores(contenedor) {
 
     tituloSeleccionado.textContent = 'Configuración de Márgenes del Botón Seleccionado';
 }
-function CambiarOrientacion() {
-    const radios = document.querySelectorAll('input[name="orientacion"]');
-    radios.forEach(radio => {
-        radio.addEventListener('change', function() {
-            const selectedValue = this.value;
-            const textos = document.getElementsByClassName('menu_anchor');
-            const clases = ['horizontal', 'vertical_izquierda', 'vertical_centro', 'vertical_derecha'];
 
-            // Remover todas las clases de orientación previamente aplicadas
-            Array.from(textos).forEach(texto => {
-                clases.forEach(clase => texto.classList.remove(clase));
-            });
-
-            // Añadir la nueva clase de orientación
-            Array.from(textos).forEach(texto => {
-                texto.classList.add(selectedValue);
-            });
-        });
-    });
-}
 
 //FUNCIONES DE "MENU BOTON"
 function bgcolor() {
@@ -1749,19 +1731,6 @@ function makeElementDraggable(elementId) {
     });
 }
 
-function cargarMenuEditarTexto() {
-    fetch('php/editar_texto/editar_texto.php')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('menuContainer').innerHTML = data;
-            document.getElementById('menuContainer').style.display = 'block';
-        })
-        .catch(error => console.error('Error al cargar el menú:', error));
-}
-
-function cerrarMenuEditarTexto() {
-    document.getElementById('menuContainer').style.display = 'none';
-}
 
 
 function showAlert() {

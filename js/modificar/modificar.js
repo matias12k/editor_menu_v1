@@ -454,7 +454,7 @@ function crearMenu(menu) {
         btnEliminarColumna.classList.add('detele-button');
         let icono = document.createElement('img');
         // Asigna la ruta de la imagen del icono de basurero
-        icono.src = 'imagenes/Icono-Basurero.jpeg';
+        icono.src = '../imagenes/modificar/Icono-Basurero.jpeg';
         // Asigna el texto alternativo del icono
         icono.alt = 'Icono-eliminar';
         btnEliminarColumna.appendChild(icono)
@@ -592,7 +592,7 @@ function crearMenu(menu) {
             btnEliminarSubcolumna.classList.add('detele-button');
             let icono = document.createElement('img');
             // Asigna la ruta de la imagen del icono de basurero
-            icono.src = 'imagenes/Icono-Basurero.jpeg';
+            icono.src = '../imagenes/modificar/Icono-Basurero.jpeg';
             // Asigna el texto alternativo del icono
             icono.alt = 'Icono-eliminar';
             btnEliminarSubcolumna.appendChild(icono);

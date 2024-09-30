@@ -6,6 +6,10 @@
 -- Creado, Programado y Diseñado por ITred Spa.
 -- BPPJ
 
+-- ------------------------------------------------------------------------------------------------------------
+-- ------------------------------ INICIO ITred Spa Base de Datos itredspa_bd .SQL ----------------------------------
+-- ------------------------------------------------------------------------------------------------------------ --
+
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
@@ -30,8 +34,9 @@ USE `itredspa_bd`;
 CREATE TABLE IF NOT EXISTS `menu_crear` (
   `ID` int(100) NOT NULL AUTO_INCREMENT,
   `titulo_menu` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  `font` varchar(255) COLLATE utf8_spanish_ci DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=1;
 
 -- ------------------------------------------------- --
 -- -- ESTRUCTURA DE TABLA PARA LA TABLA `columnas` - --
@@ -45,7 +50,7 @@ CREATE TABLE IF NOT EXISTS `columnas` (
   `type` int(100) COLLATE utf8_spanish_ci NOT NULL DEFAULT 1,
   PRIMARY KEY (`ID`),
   FOREIGN KEY (`idMenu`) REFERENCES `menu_crear`(`ID`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=1;
 
 -- ------------------------------------------------- --
 -- - ESTRUCTURA DE TABLA PARA LA TABLA `subcolumnas` --
@@ -59,15 +64,27 @@ CREATE TABLE IF NOT EXISTS `subcolumnas` (
   `type` int(100) COLLATE utf8_spanish_ci NOT NULL DEFAULT 2,
   PRIMARY KEY (`ID`),
   FOREIGN KEY (`idColumna`) REFERENCES `columnas`(`ID`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=1 ;
-
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=1;
 
 -- ------------------------------------------------- --
 -- - ESTRUCTURA DE TABLA PARA LA TABLA `fuentes` --
 -- ------------------------------------------------- --
 CREATE TABLE IF NOT EXISTS `fuentes` (
-  `id` INT(11) NOT NULL AUTO_INCREMENT,
-  `nombre` VARCHAR(25) NOT NULL,  
-  PRIMARY KEY (`id`),  
-  UNIQUE KEY `nombre` (`nombre`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `ID` int(100) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
+  `archivo` varchar(255) COLLATE utf8_spanish_ci DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=1;
+
+-- ------------------------------------------------------------------------------------------------------------
+-- -------------------------------- FIN ITred Spa Base de Datos itredspa_bd .SQL ------------------------------
+-- ------------------------------------------------------------------------------------------------------------ --
+
+
+-- Sitio Web Creado por ITred Spa.
+-- Direccion: Guido Reni #4190
+-- Pedro Agui Cerda - Santiago - Chile
+-- contacto@itred.cl o itred.spa@gmail.com
+-- https://www.itred.cl
+-- Creado, Programado y Diseñado por ITred Spa.
+-- BPPJ

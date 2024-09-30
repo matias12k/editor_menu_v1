@@ -68,9 +68,9 @@ BPPJ
                                 <option value="9">9</option>
                                 <option value="10">10</option>
                                 <option value="11">11</option>
-                                <option value="12" selected>12</option> <!-- Selección predeterminada -->
+                                <option value="12" >12</option> 
                                 <option value="14">14</option>
-                                <option value="16">16</option>
+                                <option value="16" selected>16</option><!-- Selección predeterminada -->
                                 <option value="18">18</option>
                                 <option value="20">20</option>
                                 <option value="22">22</option>
@@ -132,7 +132,7 @@ BPPJ
                             <div class="seleccionado">
                                 <div class="seleccionado_color__container-title">
                                     <div class="seleccionado_color_titulo">Titulo</div>
-                                    <div id="seleccionado_color__cerrar" class="seleccionado__cerrar">X</div> 
+                                    <div id="seleccionado_color__cerrar" class="seleccionado_color__cerrar">X</div> 
                                 </div>
                                 <div id="seleccionado_color__contenido" class="seleccionado__contenido">
                                     <div class="seleccionado_color__contenedor"></div>
